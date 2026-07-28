@@ -831,6 +831,7 @@ def remove_generated_artifacts():
         "validation_summary*.csv",
         "final_test_summary*.csv",
         "final_test_round_*.csv",
+        "final_test_metrics.json",
         "campaign_manifest.json",
         "best_result_summary.*",
         "paper_comparison_easy.csv",

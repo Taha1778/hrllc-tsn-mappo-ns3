@@ -6,6 +6,10 @@ $ErrorActionPreference = "Stop"
 $ProjectRoot = Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")
 $StatusPath = Join-Path $ProjectRoot "runs\workflow_status.json"
 $MetricsPath = Join-Path $ProjectRoot "runs\final_test_metrics.json"
+$ManifestPath = Join-Path $ProjectRoot "runs\campaign_manifest.json"
+$metricsFresh = (Test-Path -LiteralPath $MetricsPath) -and
+  ((-not (Test-Path -LiteralPath $ManifestPath)) -or
+   ((Get-Item -LiteralPath $MetricsPath).LastWriteTimeUtc -ge (Get-Item -LiteralPath $ManifestPath).LastWriteTimeUtc))
 
 if (-not (Test-Path -LiteralPath $StatusPath)) {
   @{ state = "not_started" } | ConvertTo-Json -Compress
@@ -18,12 +22,12 @@ if ($status.status -eq "running") {
   exit 0
 }
 
-if ($status.status -eq "completed" -and $status.mode -eq "training" -and -not (Test-Path -LiteralPath $MetricsPath)) {
+if ($status.status -eq "completed" -and $status.mode -eq "training" -and -not $metricsFresh) {
   @{ state = "training_complete"; action = "final_evaluation_required" } | ConvertTo-Json -Compress
   exit 0
 }
 
-if (Test-Path -LiteralPath $MetricsPath) {
+if ($metricsFresh) {
   $metrics = Get-Content -LiteralPath $MetricsPath -Raw | ConvertFrom-Json
   $good = [double]$metrics.failure_rate -lt $TargetFailureRate
   @{ state = "final_metrics_ready"; failure_rate = [double]$metrics.failure_rate; good = $good } | ConvertTo-Json -Compress
