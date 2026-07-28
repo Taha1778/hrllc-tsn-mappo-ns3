@@ -29,3 +29,9 @@
 - Validation result: preflight passed JSON validation, Python compile/import, ns-3 build, one-step smoke trajectory, and C++/PyTorch action log-probability equivalence.
 - Held-out result: pending full training and isolated 100-scenario evaluation.
 - Decision: start the Python-compatible baseline campaign.
+
+### 2026-07-28 held-out completion
+
+- Result: passed the `0.01` total-failure target with `0.005853794642857144` (0.5854%) over 100 held-out scenarios.
+- Violation rates: latency `0.003515625` (0.3516%); reliability `0.0033970424107142862` (0.3397%).
+- Decision: retain the Python-compatible baseline; no additional mismatch correction or campaign is required.
