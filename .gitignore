@@ -1,0 +1,16 @@
+external/
+weights/
+runs/
+tmp/
+tmp_excel_build/
+*.pdf
+*.csv
+*.xlsx
+weights/*.weights
+weights/*.json
+weights/*.npz
+runs/*.csv
+runs/*.log
+runs/*.txt
+__pycache__/
+*.pyc
