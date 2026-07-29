@@ -35,3 +35,11 @@
 - Result: passed the `0.01` total-failure target with `0.005853794642857144` (0.5854%) over 100 held-out scenarios.
 - Violation rates: latency `0.003515625` (0.3516%); reliability `0.0033970424107142862` (0.3397%).
 - Decision: retain the Python-compatible baseline; no additional mismatch correction or campaign is required.
+
+## Run 3: Full Supplied Python Reference Suite
+
+- Branch: `run/03-full-paper-reference-suite`
+- Parent branch: `run/02-python-compatibility-baseline`
+- Scope: execute the supplied source runner's complete Figures 7-13 experiment suite and regenerate its figures and result files.
+- Environment: supplied Python reference environment, explicitly separate from C++ ns-3 Run 2.
+- Decision: started as a separate long-running reference campaign; results will be recorded only after the suite completes.

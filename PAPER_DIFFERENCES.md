@@ -18,3 +18,10 @@ It is not a strict reproduction of the published paper.
 The automation may change only documented C++/Python compatibility mismatches.
 It may not alter paper parameters, reward coefficients, or the 1% acceptance
 threshold merely to improve a result.
+
+## Run 3 Experiment Boundary
+
+Run 3 executes the full experiment suite supplied by the user in Python. It is
+kept separate from Run 2 because it does not use the C++ ns-3 environment.
+Its results are source-reference results, not evidence that every paper baseline
+has been reproduced in ns-3.
