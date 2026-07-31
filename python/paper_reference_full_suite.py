@@ -1167,8 +1167,10 @@ class CPPOBaseline:
         np.random.seed(self.seed)
         torch.manual_seed(self.seed)
         
-        # Single agent with action space = K * (q_max + max_retx)
-        self.obs_dim = config.K_equipments * 2
+        # The centralized baseline consumes every decentralized observation.
+        # Each observation contains K channel values plus the previous power
+        # and retransmission values for its own equipment.
+        self.obs_dim = config.K_equipments * (config.K_equipments + 2)
         self.max_retx = max(1, int(config.flow_type1_latency / config.retransmission_delay))
         self.action_dim = config.K_equipments * (config.q_max + self.max_retx + 1)
         
@@ -1197,18 +1199,20 @@ class CPPOBaseline:
         obs_tensor = torch.FloatTensor(obs_flat).unsqueeze(0)
         
         with torch.no_grad():
-            logits = self.actor(obs_tensor)
-            dist = Categorical(logits=logits)
-            action = dist.sample().squeeze(0)
+            per_agent_logits = self.actor(obs_tensor).view(
+                K, self.config.q_max + self.max_retx + 1
+            )
+            power_actions = Categorical(
+                logits=per_agent_logits[:, :self.config.q_max]
+            ).sample()
+            retx_actions = Categorical(
+                logits=per_agent_logits[:, self.config.q_max:]
+            ).sample()
         
         # Decode action
         actions = np.zeros((K, 2))
         for k in range(K):
-            start_idx = k * (self.config.q_max + self.max_retx + 1)
-            q_val = action[start_idx:start_idx + self.config.q_max].argmax().item() + 1
-            retx_start = start_idx + self.config.q_max
-            retx_val = action[retx_start:retx_start + self.max_retx + 1].argmax().item()
-            actions[k] = [q_val, retx_val]
+            actions[k] = [power_actions[k].item() + 1, retx_actions[k].item()]
         
         return actions
     
@@ -1225,7 +1229,8 @@ class DQNBaseline:
         np.random.seed(self.seed)
         torch.manual_seed(self.seed)
         
-        self.state_dim = config.K_equipments * 2
+        # DQN receives the same flattened observation as CPPO.
+        self.state_dim = config.K_equipments * (config.K_equipments + 2)
         self.action_dim = config.K_equipments * (config.q_max + 1)
         self.memory = deque(maxlen=10000)
         self.epsilon = 1.0
