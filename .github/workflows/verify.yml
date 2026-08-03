@@ -23,3 +23,5 @@ jobs:
         run: python -m unittest tests/test_paper_reference_baselines.py -v
       - name: Run an isolated Figure 8 smoke point
         run: python cluster/run_figure8_job.py --method CPPO --k 2 --scenarios 2 --output-dir /tmp/hrllc-figure8-smoke
+      - name: Build the native Linux cluster image
+        run: docker build --tag hrllc-tsn-cluster:ci .
