@@ -1,0 +1,5 @@
+# The full-run workflow is intentionally restricted to the college controller.
+# This custom self-hosted runner label is assigned during controller setup.
+self-hosted-runner:
+  labels:
+    - cluster-controller

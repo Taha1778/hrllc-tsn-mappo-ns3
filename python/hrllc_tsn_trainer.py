@@ -33,8 +33,9 @@ FINAL_TEST_SUMMARY_CSV = RUNS_DIR / "final_test_summary.csv"
 WORKFLOW_STATUS_JSON = RUNS_DIR / "workflow_status.json"
 
 
-# Windows-side workflow utilities: status reporting, WSL path conversion, and
-# checked subprocess execution. C++ simulation runs in WSL; training remains here.
+# Workflow utilities. On Windows the C++ simulator is executed through WSL;
+# on Linux the exact same binary is invoked directly. This keeps the existing
+# Windows workflow working while allowing an isolated Linux worker to run a job.
 def write_workflow_status(status, **details):
     """Persist a concise, machine-readable state without audible alerts."""
     RUNS_DIR.mkdir(parents=True, exist_ok=True)
@@ -884,27 +885,29 @@ def available_csv_path(round_index, prefix="round", seed=None):
     return RUNS_DIR / f"{name}_{stamp}_{os.getpid()}.csv"
 
 
-# WSL/ns-3 bridge: synchronize changed C++ source, build it if necessary, and
-# pass weights plus every simulation parameter to one C++ trajectory execution.
+# ns-3 bridge: synchronize changed C++ source, build it if necessary, and pass
+# weights plus every simulation parameter to one C++ trajectory execution.
 def ensure_ns3_ready():
     ns3_runner = NS3_DIR / "ns3"
     scratch_file = NS3_DIR / "scratch" / "hrllc_tsn_mappo.cc"
     if not ns3_runner.exists() or not scratch_file.exists():
-        raise RuntimeError(
-            "ns-3 is not ready. Run scripts/setup_ns3_wsl.ps1 first from PowerShell."
-        )
+        setup_script = "scripts/setup_ns3_wsl.ps1" if os.name == "nt" else "scripts/setup_ns3_linux.sh"
+        raise RuntimeError(f"ns-3 is not ready. Run {setup_script} first.")
     project_source = PROJECT_ROOT / "ns3" / "scratch" / "hrllc_tsn_mappo.cc"
     if not filecmp.cmp(project_source, scratch_file, shallow=False):
         shutil.copy2(project_source, scratch_file)
-        cmake_candidates = sorted(EXTERNAL_DIR.glob("cmake-*-linux-x86_64/bin"))
-        if cmake_candidates:
-            cmake_bin_wsl = to_wsl_path(cmake_candidates[-1])
-            path_prefix = f"export PATH={shlex.quote(cmake_bin_wsl + ':/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin')}; "
+        if os.name == "nt":
+            cmake_candidates = sorted(EXTERNAL_DIR.glob("cmake-*-linux-x86_64/bin"))
+            if cmake_candidates:
+                cmake_bin_wsl = to_wsl_path(cmake_candidates[-1])
+                path_prefix = f"export PATH={shlex.quote(cmake_bin_wsl + ':/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin')}; "
+            else:
+                path_prefix = ""
+            ns3_dir_wsl = to_wsl_path(NS3_DIR)
+            command = f"{path_prefix}cd {shlex.quote(ns3_dir_wsl)} && ./ns3 build hrllc_tsn_mappo"
+            run_checked(["wsl", "bash", "-lc", command])
         else:
-            path_prefix = ""
-        ns3_dir_wsl = to_wsl_path(NS3_DIR)
-        command = f"{path_prefix}cd {shlex.quote(ns3_dir_wsl)} && ./ns3 build hrllc_tsn_mappo"
-        run_checked(["wsl", "bash", "-lc", command])
+            run_checked([str(ns3_runner), "build", "hrllc_tsn_mappo"], cwd=NS3_DIR)
 
 
 def next_round_start():
@@ -955,20 +958,19 @@ def run_ns3_round(round_index, model, config, args, *, seed=None, deterministic=
     csv_path = available_csv_path(round_index, prefix=prefix, seed=seed if prefix != "round" else None)
     reference_gains = python_reference_gain_csv(seed, model["k"], model["n_action_dim"])
 
-    project_wsl_real = to_wsl_path(PROJECT_ROOT)
-    project_wsl = f"/tmp/hrllc_tsn_mappo_project_{os.getpid()}"
-    ns3_dir_wsl = f"{project_wsl}/external/ns-3.44"
-    weights_wsl = f"{project_wsl}/weights/current_model.weights"
-    csv_wsl = f"{project_wsl}/runs/{csv_path.name}"
-    cmake_candidates = sorted(EXTERNAL_DIR.glob("cmake-*-linux-x86_64/bin"))
-    if cmake_candidates:
-        cmake_bin_wsl = to_wsl_path(cmake_candidates[-1])
-        path_prefix = f"export PATH={shlex.quote(cmake_bin_wsl + ':/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin')}; "
+    if os.name == "nt":
+        project_wsl_real = to_wsl_path(PROJECT_ROOT)
+        project_wsl = f"/tmp/hrllc_tsn_mappo_project_{os.getpid()}"
+        ns3_dir = f"{project_wsl}/external/ns-3.44"
+        weights_path = f"{project_wsl}/weights/current_model.weights"
+        csv_output_path = f"{project_wsl}/runs/{csv_path.name}"
     else:
-        path_prefix = ""
+        ns3_dir = str(NS3_DIR)
+        weights_path = str(CURRENT_WEIGHTS)
+        csv_output_path = str(csv_path)
     program_args = (
-        f"--weights={shlex.quote(weights_wsl)} "
-        f"--csv={shlex.quote(csv_wsl)} "
+        f"--weights={shlex.quote(weights_path)} "
+        f"--csv={shlex.quote(csv_output_path)} "
         f"--iterations={args.iterations} "
         f"--K={args.k} "
         f"--seed={seed} "
@@ -1016,13 +1018,25 @@ def run_ns3_round(round_index, model, config, args, *, seed=None, deterministic=
         f"--deterministic={str(deterministic).lower()} "
         f"--runIndex={round_index}"
     )
-    command = (
-        f"{path_prefix}"
-        f"ln -sfnT {shlex.quote(project_wsl_real)} {shlex.quote(project_wsl)} && "
-        f"{shlex.quote(ns3_dir_wsl + '/build/scratch/ns3.44-hrllc_tsn_mappo-default')} "
-        f"{program_args}"
-    )
-    run_checked(["wsl", "bash", "-lc", command])
+    if os.name == "nt":
+        executable_wsl = ns3_dir + "/build/scratch/ns3.44-hrllc_tsn_mappo-default"
+        cmake_candidates = sorted(EXTERNAL_DIR.glob("cmake-*-linux-x86_64/bin"))
+        if cmake_candidates:
+            cmake_bin_wsl = to_wsl_path(cmake_candidates[-1])
+            path_prefix = f"export PATH={shlex.quote(cmake_bin_wsl + ':/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin')}; "
+        else:
+            path_prefix = ""
+        command = (
+            f"{path_prefix}"
+            f"ln -sfnT {shlex.quote(project_wsl_real)} {shlex.quote(project_wsl)} && "
+            f"{shlex.quote(executable_wsl)} {program_args}"
+        )
+        run_checked(["wsl", "bash", "-lc", command])
+    else:
+        executable = Path(ns3_dir) / "build" / "scratch" / "ns3.44-hrllc_tsn_mappo-default"
+        if not executable.exists():
+            raise RuntimeError(f"ns-3 executable is missing: {executable}")
+        run_checked([str(executable), *shlex.split(program_args)], cwd=PROJECT_ROOT)
     verify_cpp_action_log_probabilities(model, csv_path, config)
     return csv_path
 

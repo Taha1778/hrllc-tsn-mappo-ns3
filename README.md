@@ -96,6 +96,20 @@ The combined run summary will be saved under `runs/` as CSV files.
 Generated `runs/` and `weights/` folders are deliberately ignored by Git.
 They are reproducible outputs, not required inputs; a fresh run creates them.
 
+## Native Linux and private-cluster execution
+
+The original Windows/WSL workflow remains supported. For a dedicated Linux
+worker, run `./scripts/setup_ns3_linux.sh` once and then
+`./scripts/run_training_linux.sh --preflight`. The Linux runner uses the same
+Python trainer and C++ ns-3 source, but calls ns-3 directly rather than through
+WSL.
+
+For the approved private college cluster, `cluster/README.md` documents a
+containerized Ray workflow. It distributes only independent source-Python
+Figure 8 method/K points, assigns each job its own output folder, and labels
+the results as `source_python_reference`. It does not reinterpret those outputs
+as C++ ns-3 data or permit workers to share `runs/` or `weights/` directories.
+
 If Python reports missing dependencies, install them with:
 
 ```powershell
