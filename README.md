@@ -98,8 +98,11 @@ They are reproducible outputs, not required inputs; a fresh run creates them.
 
 ## Native Linux and private-cluster execution
 
-The original Windows/WSL workflow remains supported. For a dedicated Linux
-worker, run `./scripts/setup_ns3_linux.sh` once and then
+The original Windows/WSL workflow remains supported. On a dedicated Linux
+worker, first install CPU PyTorch from
+`https://download.pytorch.org/whl/cpu`, then run
+`python3 -m pip install -r requirements-linux.txt`. Run
+`./scripts/setup_ns3_linux.sh` once and then
 `./scripts/run_training_linux.sh --preflight`. The Linux runner uses the same
 Python trainer and C++ ns-3 source, but calls ns-3 directly rather than through
 WSL.

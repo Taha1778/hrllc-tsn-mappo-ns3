@@ -1,0 +1,6 @@
+# Linux CPU dependencies. Install torch separately from the PyTorch CPU index.
+numpy
+pandas
+scipy
+tqdm
+matplotlib

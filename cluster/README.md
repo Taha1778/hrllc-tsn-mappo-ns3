@@ -15,8 +15,9 @@ each round depends on the preceding model state.
 
 ## Linux worker setup
 
-On a clean, dedicated Linux clone, install the approved build prerequisites and
-Python packages, then run:
+On a clean, dedicated Linux clone, install the approved build prerequisites,
+CPU PyTorch from `https://download.pytorch.org/whl/cpu`, and
+`requirements-linux.txt`, then run:
 
 ```bash
 ./scripts/setup_ns3_linux.sh

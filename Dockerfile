@@ -11,9 +11,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace
-COPY requirements.txt requirements-cluster.txt ./
+COPY requirements-linux.txt requirements-cluster.txt ./
 RUN python3 -m venv "$VIRTUAL_ENV" \
-    && python3 -m pip install --no-cache-dir -r requirements.txt -r requirements-cluster.txt
+    && python3 -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu torch \
+    && python3 -m pip install --no-cache-dir -r requirements-linux.txt -r requirements-cluster.txt
 
 COPY configs ./configs
 COPY ns3 ./ns3
