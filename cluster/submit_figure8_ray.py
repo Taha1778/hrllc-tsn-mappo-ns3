@@ -4,6 +4,8 @@
 import argparse
 import itertools
 import json
+import os
+import subprocess
 import sys
 from pathlib import Path
 
@@ -33,6 +35,18 @@ def parse_k_values(value: str) -> tuple[int, ...]:
             f"Unsupported K values: {invalid}; supported values are {supported}"
         )
     return k_values
+
+
+def source_commit() -> str:
+    configured_commit = os.environ.get("PROJECT_GIT_COMMIT", "").strip()
+    if configured_commit:
+        return configured_commit
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=PROJECT_ROOT, text=True
+        ).strip()
+    except (OSError, subprocess.CalledProcessError):
+        return "unknown"
 
 
 def main() -> None:
@@ -71,6 +85,7 @@ def main() -> None:
         {
             "method": method,
             "k": k,
+            "git_commit": source_commit(),
             "output_dir": str(Path(args.results_root) / method.lower() / f"k-{k:02d}"),
         }
         for method, k in itertools.product(args.methods, args.k_values)
@@ -85,8 +100,6 @@ def main() -> None:
 
     @ray.remote(num_cpus=args.cpus_per_job)
     def run_job(job: dict) -> dict:
-        import subprocess
-
         command = [
             sys.executable,
             str(JOB_SCRIPT),
@@ -109,6 +122,7 @@ def main() -> None:
                 text=True,
                 capture_output=True,
                 timeout=args.job_timeout_seconds,
+                env={**os.environ, "PROJECT_GIT_COMMIT": job["git_commit"]},
             )
         except subprocess.TimeoutExpired as error:
             return {
