@@ -425,6 +425,8 @@ public:
                            double reliabilityPenaltyWeight,
                            bool shadowFadingPerStep,
                            bool conservativeRetryFeasibility,
+                           bool randomGcl,
+                           bool simpleReward,
                            std::vector<double> referenceGains,
                            bool deterministic,
                            uint32_t runIndex)
@@ -463,8 +465,10 @@ public:
       m_probabilityFloor (probabilityFloor),
       m_denominatorFloor (denominatorFloor),
       m_reliabilityPenaltyWeight (reliabilityPenaltyWeight),
-      m_shadowFadingPerStep (shadowFadingPerStep),
-      m_conservativeRetryFeasibility (conservativeRetryFeasibility),
+       m_shadowFadingPerStep (shadowFadingPerStep),
+       m_conservativeRetryFeasibility (conservativeRetryFeasibility),
+       m_randomGcl (randomGcl),
+       m_simpleReward (simpleReward),
       m_referenceGains (std::move (referenceGains)),
       m_deterministic (deterministic),
       m_runIndex (runIndex),
@@ -626,7 +630,11 @@ private:
 
         // Equations (27)-(29): reward is zero only when every frame meets
         // both requirements; late or unreliable frames add a negative penalty.
-        if (frame.lW < 0.0)
+        if (m_simpleReward)
+          {
+            reward += frame.success ? 0.0 : -1.0;
+          }
+        else if (frame.lW < 0.0)
           {
             reward += frame.lW;
           }
@@ -771,13 +779,20 @@ private:
           }
       }
 
-    std::sort (frames.begin (), frames.end (), [this] (const Frame& a, const Frame& b) {
+    if (m_randomGcl)
+      {
+        std::shuffle (frames.begin (), frames.end (), m_stdRng);
+      }
+    else
+      {
+        std::sort (frames.begin (), frames.end (), [this] (const Frame& a, const Frame& b) {
       if (std::abs (a.tPrimeS - b.tPrimeS) > 1e-12)
         {
           return a.tPrimeS < b.tPrimeS;
         }
       return m_equipment[a.k].lambda < m_equipment[b.k].lambda;
-    });
+        });
+      }
 
     double tsnLinkAvailable = 0.0;
     for (auto& frame : frames)
@@ -935,6 +950,8 @@ private:
   double m_reliabilityPenaltyWeight;
   bool m_shadowFadingPerStep;
   bool m_conservativeRetryFeasibility;
+  bool m_randomGcl;
+  bool m_simpleReward;
   std::vector<double> m_referenceGains;
   bool m_deterministic;
   uint32_t m_runIndex;
@@ -1011,6 +1028,8 @@ main (int argc, char* argv[])
   double reliabilityPenaltyWeight = 1.0;
   bool shadowFadingPerStep = true;
   bool conservativeRetryFeasibility = true;
+  bool randomGcl = false;
+  bool simpleReward = false;
   std::string referenceGainsCsv;
   bool deterministic = false;
   uint32_t runIndex = 0;
@@ -1061,6 +1080,8 @@ main (int argc, char* argv[])
   cmd.AddValue ("reliabilityPenaltyWeight", "Multiplier for reliability-violation reward penalties", reliabilityPenaltyWeight);
   cmd.AddValue ("shadowFadingPerStep", "Redraw log-normal shadow fading every time slot", shadowFadingPerStep);
   cmd.AddValue ("conservativeRetryFeasibility", "Mask retries that cannot meet a conservative L_W budget", conservativeRetryFeasibility);
+  cmd.AddValue ("randomGcl", "Use random TSN gate-control ordering (MAPPO-R extension)", randomGcl);
+  cmd.AddValue ("simpleReward", "Use unit penalty for each failed frame (MAPPO-S extension)", simpleReward);
   cmd.AddValue ("referenceGains", "Comma-separated Python gamma gains indexed by equipment then attempt", referenceGainsCsv);
   cmd.AddValue ("deterministic", "Use argmax actions instead of sampling", deterministic);
   cmd.AddValue ("runIndex", "Training-loop run index", runIndex);
@@ -1121,6 +1142,8 @@ main (int argc, char* argv[])
                                           reliabilityPenaltyWeight,
                                           shadowFadingPerStep,
                                           conservativeRetryFeasibility,
+                                          randomGcl,
+                                          simpleReward,
                                           ParseCommaSeparatedDoubles (referenceGainsCsv),
                                           deterministic,
                                           runIndex);

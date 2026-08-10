@@ -12,6 +12,8 @@
     {"name": "reward-4-mask-on", "reliability_penalty_weight": 4.0, "conservative_retry_feasibility_mask": true}
   ],
   "critic_loss": "huber",
+  "random_gcl": false,
+  "simple_reward": false,
   "reliability_penalty_weight": 1.0,
   "conservative_retry_feasibility_mask": false
 }

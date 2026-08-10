@@ -47,6 +47,8 @@ def make_config(base: dict, candidate: dict, variant: str) -> dict:
     config.update({key: value for key, value in candidate.items() if key != "name"})
     config["experiment_variant"] = variant
     config["critic_loss"] = "mse" if variant == "MAPPO-M" else "huber"
+    config["random_gcl"] = variant == "MAPPO-R"
+    config["simple_reward"] = variant == "MAPPO-S"
     return config
 
 

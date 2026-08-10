@@ -1020,6 +1020,8 @@ def run_ns3_round(round_index, model, config, args, *, seed=None, deterministic=
         f"--reliabilityPenaltyWeight={config['reliability_penalty_weight']} "
         f"--shadowFadingPerStep={str(config['shadow_fading_mode'] == 'iid_per_step').lower()} "
         f"--conservativeRetryFeasibility={str(config.get('conservative_retry_feasibility_mask', False)).lower()} "
+        f"--randomGcl={str(config.get('random_gcl', False)).lower()} "
+        f"--simpleReward={str(config.get('simple_reward', False)).lower()} "
         f"--referenceGains={reference_gains} "
         f"--deterministic={str(deterministic).lower()} "
         f"--runIndex={round_index}"
