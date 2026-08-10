@@ -1,0 +1,70 @@
+name: Native ns-3 extension campaign
+
+on:
+  push:
+    branches: [cluster]
+    paths:
+      - 'configs/**'
+      - 'python/**'
+      - 'ns3/**'
+      - 'cluster/**'
+      - 'scripts/**'
+      - 'Dockerfile'
+      - '.github/workflows/native-ns3-cluster.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: native-ns3-extension-cluster
+  cancel-in-progress: false
+
+jobs:
+  campaign:
+    # This runner must exist only on the private controller.  Do not add this
+    # label to a public/shared runner and do not enable pull_request triggers.
+    if: "!contains(github.event.head_commit.message, '[skip cluster campaign]')"
+    runs-on: [self-hosted, cluster-controller]
+    environment: research-cluster
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify source and native ns-3 preflight
+        run: |
+          python3 -m pip install -r requirements-linux.txt -r requirements-cluster.txt
+          python3 -m py_compile python/hrllc_tsn_trainer.py cluster/*.py
+          python3 tests/test_paper_reference_baselines.py -v
+          ./scripts/run_training_linux.sh --preflight
+          python3 cluster/submit_ns3_campaign_ray.py --results-root /tmp/hrllc-native-dry-run --dry-run --rounds 1 --iterations 1
+      - name: Submit isolated native ns-3 selection campaign
+        env:
+          KUBECONFIG: /etc/rancher/k3s/k3s.yaml
+          RESULTS_ROOT: /cluster-results/native-ns3/${{ github.sha }}-${{ github.run_id }}
+          PROJECT_GIT_COMMIT: ${{ github.sha }}
+        run: |
+          HEAD_POD=$(sudo k3s kubectl get pods -n ray-system -l ray.io/node-type=head -o jsonpath='{.items[0].metadata.name}')
+          PODS=$(sudo k3s kubectl get pods -n ray-system -l ray.io/cluster=raycluster-kuberay -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}')
+          # All Ray nodes receive exactly the source revision that triggered this workflow.
+          # Each pod rebuilds its local ns-3 binary; no node shares mutable build output.
+          for POD in $PODS; do
+            CONTAINER=ray-worker
+            [ "$POD" = "$HEAD_POD" ] && CONTAINER=ray-head
+            sudo k3s kubectl cp python/hrllc_tsn_trainer.py "ray-system/$POD:/workspace/python/hrllc_tsn_trainer.py" -c "$CONTAINER"
+            sudo k3s kubectl cp ns3/scratch/hrllc_tsn_mappo.cc "ray-system/$POD:/workspace/ns3/scratch/hrllc_tsn_mappo.cc" -c "$CONTAINER"
+            sudo k3s kubectl exec -n ray-system "$POD" -c "$CONTAINER" -- sh -lc 'cd /workspace && ./scripts/setup_ns3_linux.sh'
+          done
+          sudo k3s kubectl cp configs/extension_qos.json "ray-system/$HEAD_POD:/workspace/configs/extension_qos.json" -c ray-head
+          sudo k3s kubectl cp cluster/submit_ns3_campaign_ray.py "ray-system/$HEAD_POD:/workspace/cluster/submit_ns3_campaign_ray.py" -c ray-head
+          sudo k3s kubectl exec -n ray-system "$HEAD_POD" -- env PROJECT_GIT_COMMIT="$PROJECT_GIT_COMMIT" \
+            python3 /workspace/cluster/submit_ns3_campaign_ray.py --address auto --results-root "$RESULTS_ROOT"
+      - name: Save campaign provenance
+        env:
+          RESULTS_ROOT: /cluster-results/native-ns3/${{ github.sha }}-${{ github.run_id }}
+        run: |
+          test -f "$RESULTS_ROOT/native-ns3/selection.json"
+          mkdir -p results/native-ns3
+          cp "$RESULTS_ROOT/native-ns3/selection.json" "results/native-ns3/selection-${{ github.sha }}.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "results/native-ns3/selection-${{ github.sha }}.json"
+          git diff --cached --quiet || git commit -m "Record native ns-3 extension selection [skip cluster campaign]"
+          git push origin HEAD:cluster

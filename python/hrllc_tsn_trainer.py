@@ -19,11 +19,14 @@ import torch.nn.functional as F
 from torch.distributions import Categorical
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = PROJECT_ROOT / "configs" / "default_config.json"
+SOURCE_ROOT = Path(__file__).resolve().parents[1]
+# A Ray task must never share mutable results or weights with another task.
+# The source and ns-3 build stay in SOURCE_ROOT; only mutable artifacts move.
+PROJECT_ROOT = Path(os.environ.get("HRLLC_TSN_WORKSPACE", SOURCE_ROOT)).resolve()
+CONFIG_PATH = Path(os.environ.get("HRLLC_TSN_CONFIG", SOURCE_ROOT / "configs" / "default_config.json")).resolve()
 WEIGHTS_DIR = PROJECT_ROOT / "weights"
 RUNS_DIR = PROJECT_ROOT / "runs"
-EXTERNAL_DIR = PROJECT_ROOT / "external"
+EXTERNAL_DIR = SOURCE_ROOT / "external"
 NS3_DIR = EXTERNAL_DIR / "ns-3.44"
 CURRENT_NPZ = WEIGHTS_DIR / "current_model.npz"
 CURRENT_WEIGHTS = WEIGHTS_DIR / "current_model.weights"
@@ -702,7 +705,10 @@ def update_model_from_csv(model, csv_path, config):
 
         critic_optimizer = model["critic_optimizer"]
         critic_optimizer.zero_grad()
-        critic_loss = F.huber_loss(model["critic"](states), returns, delta=float(config["huber_delta"]))
+        if config.get("critic_loss", "huber") == "mse":
+            critic_loss = F.mse_loss(model["critic"](states), returns)
+        else:
+            critic_loss = F.huber_loss(model["critic"](states), returns, delta=float(config["huber_delta"]))
         critic_loss.backward()
         torch.nn.utils.clip_grad_norm_(model["critic"].parameters(), max_grad_norm)
         critic_optimizer.step()
@@ -1086,6 +1092,8 @@ def main():
     parser.add_argument("--radius", type=float, default=None)
     parser.add_argument("--power", type=float, default=None)
     parser.add_argument("--gamma-db", type=float, default=None)
+    parser.add_argument("--config", type=Path, default=None, help="Extension configuration JSON; defaults to HRLLC_TSN_CONFIG/default config.")
+    parser.add_argument("--workspace", type=Path, default=None, help="Isolated mutable runs/ and weights/ directory.")
     parser.add_argument("--reset-model", action="store_true")
     parser.add_argument(
         "--fresh-start",
@@ -1137,6 +1145,21 @@ def main():
     )
     args = parser.parse_args()
 
+    global PROJECT_ROOT, CONFIG_PATH, WEIGHTS_DIR, RUNS_DIR, CURRENT_NPZ, CURRENT_WEIGHTS
+    global SUMMARY_CSV, VALIDATION_SUMMARY_CSV, FINAL_TEST_SUMMARY_CSV, WORKFLOW_STATUS_JSON
+    if args.workspace:
+        PROJECT_ROOT = args.workspace.resolve()
+        WEIGHTS_DIR = PROJECT_ROOT / "weights"
+        RUNS_DIR = PROJECT_ROOT / "runs"
+        CURRENT_NPZ = WEIGHTS_DIR / "current_model.npz"
+        CURRENT_WEIGHTS = WEIGHTS_DIR / "current_model.weights"
+        SUMMARY_CSV = RUNS_DIR / "summary.csv"
+        VALIDATION_SUMMARY_CSV = RUNS_DIR / "validation_summary.csv"
+        FINAL_TEST_SUMMARY_CSV = RUNS_DIR / "final_test_summary.csv"
+        WORKFLOW_STATUS_JSON = RUNS_DIR / "workflow_status.json"
+    if args.config:
+        CONFIG_PATH = args.config.resolve()
+
     config = load_config()
     if int(config["hidden_layer_count"]) != 2:
         raise ValueError("This weight-file format implements exactly two hidden layers.")
@@ -1150,6 +1173,8 @@ def main():
         raise ValueError("initialization_method must be 'orthogonal', 'normal_fixed', or 'xavier_uniform'.")
     if config.get("initial_action_prior") not in {"balanced_safe", "none"}:
         raise ValueError("initial_action_prior must be 'balanced_safe' or 'none'.")
+    if config.get("critic_loss", "huber") not in {"huber", "mse"}:
+        raise ValueError("critic_loss must be 'huber' or 'mse'.")
     if args.iterations is None:
         args.iterations = int(config["iterations"])
     if args.k is None:

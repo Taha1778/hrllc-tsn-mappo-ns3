@@ -90,3 +90,19 @@ The repository also includes two GitHub Actions workflows:
   `RAY_DASHBOARD_ADDRESS` to the internal Ray Jobs address. Do not register
   this runner with a public repository or allow untrusted pull-request code to
   use its label.
+
+## Native ns-3 QoS extension
+
+`configs/extension_qos.json` is a separately labelled extension configuration.
+It keeps the network and QoS constraints unchanged while screening six MAPPO-H
+policy choices: reliability-reward weight 1/2/4 with the conservative retry
+mask disabled/enabled. `cluster/submit_ns3_campaign_ray.py` gives every Ray
+task a private `runs/` and `weights/` workspace, trains Python MAPPO, then
+executes the local C++ ns-3 binary and ranks candidates by the equal-weight
+mean of failure, latency-violation, and reliability-violation rates.
+
+The `Native ns-3 extension campaign` GitHub workflow runs only for trusted
+direct pushes to `cluster`; it never runs for pull requests or forks. It first
+performs the native preflight, synchronizes the exact Python/C++ source revision
+to each Ray pod, rebuilds ns-3 locally, and persists `selection.json` under
+`/cluster-results/native-ns3/<commit>-<run-id>`.
