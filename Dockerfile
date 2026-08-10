@@ -10,10 +10,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       build-essential ca-certificates cmake git ninja-build python3 python3-pip python3-venv \
     && rm -rf /var/lib/apt/lists/*
 
+
 WORKDIR /workspace
 COPY requirements-linux.txt requirements-cluster.txt ./
 RUN python3 -m venv "$VIRTUAL_ENV" \
-    && python3 -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu torch \
+    && python3 -m pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cu124 torch \
     && python3 -m pip install --no-cache-dir -r requirements-linux.txt -r requirements-cluster.txt
 
 COPY configs ./configs
