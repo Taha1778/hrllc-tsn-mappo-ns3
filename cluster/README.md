@@ -58,6 +58,13 @@ python3 cluster/aggregate_figure8.py \
 For a quick smoke test, use `--methods CPPO --scenarios 2`. The normal paper
 reference point uses 1,000 MAPPO episodes and 100 evaluation scenarios.
 
+The submitter keeps only as many jobs in flight as the Ray cluster reports CPU
+capacity, prints completion progress, and safely reuses a matching existing
+point after interruption. Use `--methods BCD --k-values 8,12` for a targeted
+recovery. Build the image with `--build-arg GIT_COMMIT=$(git rev-parse HEAD)` so
+every result records its exact source revision even when `.git` is not copied
+into the container.
+
 ## Tests and full runs after a code change
 
 Run these on every pull request or commit:

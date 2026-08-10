@@ -35,6 +35,9 @@ METHODS = ("MAPPO-H", "MAPPO-M", "CPPO", "DQN", "MADDPG", "BCD", "Random")
 
 
 def git_commit() -> str:
+    configured_commit = os.environ.get("PROJECT_GIT_COMMIT", "").strip()
+    if configured_commit:
+        return configured_commit
     try:
         return subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=PROJECT_ROOT, text=True
@@ -100,7 +103,27 @@ def main() -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     result_path = output_dir / "figure8_point.json"
     if result_path.exists():
-        raise SystemExit(f"Refusing to overwrite an existing result: {result_path}")
+        existing = json.loads(result_path.read_text(encoding="utf-8"))
+        expected = {
+            "provenance": "source_python_reference",
+            "figure": 8,
+            "method": args.method,
+            "k": args.k,
+            "seed": args.seed,
+            "episodes": args.episodes,
+            "scenarios": args.scenarios,
+        }
+        mismatched = {
+            key: (existing.get(key), value)
+            for key, value in expected.items()
+            if existing.get(key) != value
+        }
+        if mismatched:
+            raise SystemExit(
+                f"Existing result does not match this job: {result_path}: {mismatched}"
+            )
+        print(json.dumps(existing, sort_keys=True))
+        return
 
     metrics = evaluate_point(args.method, args.k, args.seed, args.episodes, args.scenarios)
     payload = {

@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+from matplotlib.ticker import PercentFormatter
 
 METHODS = ("MAPPO-H", "MAPPO-M", "CPPO", "DQN", "MADDPG", "BCD", "Random")
 K_VALUES = (2, 4, 6, 8, 10, 12)
@@ -54,7 +55,13 @@ def main() -> None:
     figure, axis = plt.subplots(figsize=(12, 7))
     for method in METHODS:
         axis.plot(K_VALUES, output["results"][method], marker="o", label=method)
-    axis.set(xlabel="Number of Industrial Equipments K", ylabel="Failure Rate", title="Figure 8: Failure Rate vs K")
+    axis.set(
+        xlabel="Number of Industrial Equipments K",
+        ylabel="Failure Rate (%)",
+        title="Figure 8: Failure Rate vs K",
+    )
+    axis.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=0))
+    axis.set_ylim(bottom=0)
     axis.grid(True, alpha=0.3)
     axis.legend(ncol=2)
     figure.tight_layout()
