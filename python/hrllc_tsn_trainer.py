@@ -899,7 +899,10 @@ def ensure_ns3_ready():
     if not ns3_runner.exists() or not scratch_file.exists():
         setup_script = "scripts/setup_ns3_wsl.ps1" if os.name == "nt" else "scripts/setup_ns3_linux.sh"
         raise RuntimeError(f"ns-3 is not ready. Run {setup_script} first.")
-    project_source = PROJECT_ROOT / "ns3" / "scratch" / "hrllc_tsn_mappo.cc"
+    # PROJECT_ROOT may be a per-Ray-task output workspace.  Keep source files
+    # anchored to the checked-out project so isolated tasks do not look for
+    # ns-3 under their results directory.
+    project_source = SOURCE_ROOT / "ns3" / "scratch" / "hrllc_tsn_mappo.cc"
     if not filecmp.cmp(project_source, scratch_file, shallow=False):
         shutil.copy2(project_source, scratch_file)
         if os.name == "nt":
@@ -965,7 +968,7 @@ def run_ns3_round(round_index, model, config, args, *, seed=None, deterministic=
     reference_gains = python_reference_gain_csv(seed, model["k"], model["n_action_dim"])
 
     if os.name == "nt":
-        project_wsl_real = to_wsl_path(PROJECT_ROOT)
+        project_wsl_real = to_wsl_path(SOURCE_ROOT)
         project_wsl = f"/tmp/hrllc_tsn_mappo_project_{os.getpid()}"
         ns3_dir = f"{project_wsl}/external/ns-3.44"
         weights_path = f"{project_wsl}/weights/current_model.weights"
@@ -1044,7 +1047,7 @@ def run_ns3_round(round_index, model, config, args, *, seed=None, deterministic=
         executable = Path(ns3_dir) / "build" / "scratch" / "ns3.44-hrllc_tsn_mappo-default"
         if not executable.exists():
             raise RuntimeError(f"ns-3 executable is missing: {executable}")
-        run_checked([str(executable), *shlex.split(program_args)], cwd=PROJECT_ROOT)
+        run_checked([str(executable), *shlex.split(program_args)], cwd=SOURCE_ROOT)
     verify_cpp_action_log_probabilities(model, csv_path, config)
     return csv_path
 
