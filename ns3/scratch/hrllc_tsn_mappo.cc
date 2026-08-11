@@ -837,7 +837,10 @@ private:
   double
   TsnDataUnitsPerMs () const
   {
-    return m_tsnRateMbps * 1000.0;
+    // Frame sizes are represented in bytes throughout this simulator. Convert
+    // the configured Mbps link rate from bits/ms to bytes/ms before using it
+    // in serialization-delay and retry-feasibility calculations.
+    return m_tsnRateMbps * 1000.0 / 8.0;
   }
 
   double
