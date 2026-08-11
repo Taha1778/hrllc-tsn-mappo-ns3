@@ -1027,7 +1027,9 @@ main (int argc, char* argv[])
   double denominatorFloor = 1e-300;
   double reliabilityPenaltyWeight = 1.0;
   bool shadowFadingPerStep = true;
-  bool conservativeRetryFeasibility = true;
+  // Use an integer switch rather than ns-3's Boolean command-line parser.
+  // This makes the Python 0/1 candidate configuration unambiguous.
+  uint32_t conservativeRetryFeasibility = 0;
   bool randomGcl = false;
   bool simpleReward = false;
   std::string referenceGainsCsv;
@@ -1079,7 +1081,7 @@ main (int argc, char* argv[])
   cmd.AddValue ("denominatorFloor", "Positive floor for denominator calculations", denominatorFloor);
   cmd.AddValue ("reliabilityPenaltyWeight", "Multiplier for reliability-violation reward penalties", reliabilityPenaltyWeight);
   cmd.AddValue ("shadowFadingPerStep", "Redraw log-normal shadow fading every time slot", shadowFadingPerStep);
-  cmd.AddValue ("conservativeRetryFeasibility", "Mask retries that cannot meet a conservative L_W budget", conservativeRetryFeasibility);
+  cmd.AddValue ("conservativeRetryFeasibility", "0=paper action space, 1=conservative retry feasibility mask", conservativeRetryFeasibility);
   cmd.AddValue ("randomGcl", "Use random TSN gate-control ordering (MAPPO-R extension)", randomGcl);
   cmd.AddValue ("simpleReward", "Use unit penalty for each failed frame (MAPPO-S extension)", simpleReward);
   cmd.AddValue ("referenceGains", "Comma-separated Python gamma gains indexed by equipment then attempt", referenceGainsCsv);
@@ -1141,7 +1143,7 @@ main (int argc, char* argv[])
                                           denominatorFloor,
                                           reliabilityPenaltyWeight,
                                           shadowFadingPerStep,
-                                          conservativeRetryFeasibility,
+                                          conservativeRetryFeasibility != 0,
                                           randomGcl,
                                           simpleReward,
                                           ParseCommaSeparatedDoubles (referenceGainsCsv),
