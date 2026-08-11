@@ -1,0 +1,219 @@
+{
+  "git_commit": "a452bacaa3eee56add80527d769231b53ac7dbf9",
+  "metric": "equal_weight_mean(failure_rate, latency_violation_rate, reliability_violation_rate)",
+  "scores": {
+    "reward-1-mask-off": 0.15141369047619047,
+    "reward-1-mask-on": 0.5597098214285715,
+    "reward-2-mask-off": 0.15141369047619047,
+    "reward-2-mask-on": 0.5597098214285715,
+    "reward-4-mask-off": 0.15141369047619047,
+    "reward-4-mask-on": 0.5597098214285715
+  },
+  "winner": "reward-1-mask-off",
+  "tasks": [
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 1,
+        "iterations": 1,
+        "validation_seeds": 1,
+        "final_test_seeds": 1
+      },
+      "candidate": {
+        "name": "reward-2-mask-off",
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "a452bacaa3eee56add80527d769231b53ac7dbf9",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 4.989,
+      "stdout": "initial_validation_failure_rate=0.178571 seeds=1\nvalidation_round=0 mean_failure_rate=0.25 seeds=1\nround=0 csv=/cluster-results/native-ns3/a452bacaa3eee56add80527d769231b53ac7dbf9-smoke-20260811-152457/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0000.csv failure_rate=0.357143 reward_mean=-12.8132\nsummary_csv=/cluster-results/native-ns3/a452bacaa3eee56add80527d769231b53ac7dbf9-smoke-20260811-152457/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\nfinal_test_failure_rate=0.225725 seeds=1\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -11.908813055159728,
+        "failure_rate": 0.2257254464285714,
+        "latency_violation_rate": 0.0027901785714285715,
+        "reliability_violation_rate": 0.22572544642857142,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9805831473214286,
+        "avg_failure_probability": 0.0015236502779578322
+      },
+      "qos_score": 0.15141369047619047
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 1,
+        "iterations": 1,
+        "validation_seeds": 1,
+        "final_test_seeds": 1
+      },
+      "candidate": {
+        "name": "reward-1-mask-off",
+        "reliability_penalty_weight": 1.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "a452bacaa3eee56add80527d769231b53ac7dbf9",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 5.009,
+      "stdout": "initial_validation_failure_rate=0.178571 seeds=1\nvalidation_round=0 mean_failure_rate=0.25 seeds=1\nround=0 csv=/cluster-results/native-ns3/a452bacaa3eee56add80527d769231b53ac7dbf9-smoke-20260811-152457/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0000.csv failure_rate=0.357143 reward_mean=-6.40658\nsummary_csv=/cluster-results/native-ns3/a452bacaa3eee56add80527d769231b53ac7dbf9-smoke-20260811-152457/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\nfinal_test_failure_rate=0.225725 seeds=1\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -5.984054965079453,
+        "failure_rate": 0.2257254464285714,
+        "latency_violation_rate": 0.0027901785714285715,
+        "reliability_violation_rate": 0.22572544642857142,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9805831473214286,
+        "avg_failure_probability": 0.0015236502779578322
+      },
+      "qos_score": 0.15141369047619047
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 1,
+        "iterations": 1,
+        "validation_seeds": 1,
+        "final_test_seeds": 1
+      },
+      "candidate": {
+        "name": "reward-1-mask-on",
+        "reliability_penalty_weight": 1.0,
+        "conservative_retry_feasibility_mask": true
+      },
+      "git_commit": "a452bacaa3eee56add80527d769231b53ac7dbf9",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 5.031,
+      "stdout": "initial_validation_failure_rate=0.785714 seeds=1\nvalidation_round=0 mean_failure_rate=0.785714 seeds=1\nround=0 csv=/cluster-results/native-ns3/a452bacaa3eee56add80527d769231b53ac7dbf9-smoke-20260811-152457/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0000.csv failure_rate=0.714286 reward_mean=-16.3386\nsummary_csv=/cluster-results/native-ns3/a452bacaa3eee56add80527d769231b53ac7dbf9-smoke-20260811-152457/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\nfinal_test_failure_rate=0.839565 seeds=1\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -22.945570797872264,
+        "failure_rate": 0.8395647321428572,
+        "latency_violation_rate": 0.0,
+        "reliability_violation_rate": 0.8395647321428571,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9873842075892856,
+        "avg_failure_probability": 0.01596410617249091
+      },
+      "qos_score": 0.5597098214285715
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 1,
+        "iterations": 1,
+        "validation_seeds": 1,
+        "final_test_seeds": 1
+      },
+      "candidate": {
+        "name": "reward-2-mask-on",
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": true
+      },
+      "git_commit": "a452bacaa3eee56add80527d769231b53ac7dbf9",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 5.089,
+      "stdout": "initial_validation_failure_rate=0.785714 seeds=1\nvalidation_round=0 mean_failure_rate=0.785714 seeds=1\nround=0 csv=/cluster-results/native-ns3/a452bacaa3eee56add80527d769231b53ac7dbf9-smoke-20260811-152457/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0000.csv failure_rate=0.714286 reward_mean=-32.6772\nsummary_csv=/cluster-results/native-ns3/a452bacaa3eee56add80527d769231b53ac7dbf9-smoke-20260811-152457/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\nfinal_test_failure_rate=0.839565 seeds=1\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -45.8911415957418,
+        "failure_rate": 0.8395647321428572,
+        "latency_violation_rate": 0.0,
+        "reliability_violation_rate": 0.8395647321428571,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9873842075892856,
+        "avg_failure_probability": 0.01596410617249091
+      },
+      "qos_score": 0.5597098214285715
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 1,
+        "iterations": 1,
+        "validation_seeds": 1,
+        "final_test_seeds": 1
+      },
+      "candidate": {
+        "name": "reward-4-mask-off",
+        "reliability_penalty_weight": 4.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "a452bacaa3eee56add80527d769231b53ac7dbf9",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 5.08,
+      "stdout": "initial_validation_failure_rate=0.178571 seeds=1\nvalidation_round=0 mean_failure_rate=0.25 seeds=1\nround=0 csv=/cluster-results/native-ns3/a452bacaa3eee56add80527d769231b53ac7dbf9-smoke-20260811-152457/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0000.csv failure_rate=0.357143 reward_mean=-25.6263\nsummary_csv=/cluster-results/native-ns3/a452bacaa3eee56add80527d769231b53ac7dbf9-smoke-20260811-152457/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\nfinal_test_failure_rate=0.225725 seeds=1\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -23.758329235317106,
+        "failure_rate": 0.2257254464285714,
+        "latency_violation_rate": 0.0027901785714285715,
+        "reliability_violation_rate": 0.22572544642857142,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9805831473214286,
+        "avg_failure_probability": 0.0015236502779578322
+      },
+      "qos_score": 0.15141369047619047
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 1,
+        "iterations": 1,
+        "validation_seeds": 1,
+        "final_test_seeds": 1
+      },
+      "candidate": {
+        "name": "reward-4-mask-on",
+        "reliability_penalty_weight": 4.0,
+        "conservative_retry_feasibility_mask": true
+      },
+      "git_commit": "a452bacaa3eee56add80527d769231b53ac7dbf9",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 5.058,
+      "stdout": "initial_validation_failure_rate=0.785714 seeds=1\nvalidation_round=0 mean_failure_rate=0.785714 seeds=1\nround=0 csv=/cluster-results/native-ns3/a452bacaa3eee56add80527d769231b53ac7dbf9-smoke-20260811-152457/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0000.csv failure_rate=0.714286 reward_mean=-65.3543\nsummary_csv=/cluster-results/native-ns3/a452bacaa3eee56add80527d769231b53ac7dbf9-smoke-20260811-152457/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\nfinal_test_failure_rate=0.839565 seeds=1\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -91.78228319147578,
+        "failure_rate": 0.8395647321428572,
+        "latency_violation_rate": 0.0,
+        "reliability_violation_rate": 0.8395647321428571,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9873842075892856,
+        "avg_failure_probability": 0.01596410617249091
+      },
+      "qos_score": 0.5597098214285715
+    }
+  ]
+}
