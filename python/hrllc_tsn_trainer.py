@@ -331,8 +331,14 @@ def ensure_model(config, reset=False):
             model = create_model(config)
             save_model_npz(model, CURRENT_NPZ)
             recreated = True
-        expected = (int(config["k"]), int(config["k"]) + 2, 3 * int(config["k"]), int(config["hidden_layer_count"]))
-        actual = (model["k"], model["obs_dim"], model["state_dim"], model["hidden_layer_count"])
+        expected = (
+            int(config["k"]), int(config["k"]) + 2, 3 * int(config["k"]),
+            int(config["hidden_layer_count"]), int(config["hidden_dim"]), int(config["q_max"]),
+        )
+        actual = (
+            model["k"], model["obs_dim"], model["state_dim"],
+            model["hidden_layer_count"], model["hidden_dim"], model["q_max"],
+        )
         if actual != expected:
             model = create_model(config)
             save_model_npz(model, CURRENT_NPZ)
@@ -762,17 +768,26 @@ def append_summary(round_index, csv_path, metrics):
 
 def save_best_if_needed(model, metrics):
     best_meta = WEIGHTS_DIR / "best_metrics.json"
-    current = float(metrics["failure_rate"])
+    current = sum(float(metrics[key]) for key in (
+        "failure_rate", "latency_violation_rate", "reliability_violation_rate"
+    )) / 3.0
     previous = None
     if best_meta.exists():
         try:
-            previous = json.loads(best_meta.read_text(encoding="utf-8")).get("failure_rate")
+            previous_metrics = json.loads(best_meta.read_text(encoding="utf-8"))
+            previous = previous_metrics.get("selection_qos_score")
+            if previous is None:
+                previous = sum(float(previous_metrics[key]) for key in (
+                    "failure_rate", "latency_violation_rate", "reliability_violation_rate"
+                )) / 3.0
         except Exception:
             previous = None
     if previous is None or current < float(previous):
         save_model_npz(model, WEIGHTS_DIR / "best_model.npz")
         write_cpp_weights(model, WEIGHTS_DIR / "best_model.weights")
-        best_meta.write_text(json.dumps(metrics, indent=2), encoding="utf-8")
+        best_meta.write_text(
+            json.dumps({**metrics, "selection_qos_score": current}, indent=2), encoding="utf-8"
+        )
 
 
 def mean_metrics(metrics_list):

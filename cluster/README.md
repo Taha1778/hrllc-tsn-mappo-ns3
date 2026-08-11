@@ -105,9 +105,14 @@ the local C++ ns-3 binary and ranks candidates by the equal-weight mean of
 failure, latency-violation, and reliability-violation rates.
 
 The Python and C++ weight format supports exactly two or three ReLU hidden
-layers. A candidate is selected using validation seeds only; its final test
-metrics remain separate from the selection decision. All generated reports
-record the candidate configuration, seeds, Git commit, and source provenance.
+layers. A candidate is selected using validation seeds only; after selection,
+only the winning candidate is evaluated with held-out final-test seeds. All
+generated reports record the candidate configuration, validation score,
+held-out metrics, seeds, Git commit, and source provenance.
+The current primary configuration is `deep-wide-stable-h3-d128-r2`: three
+hidden layers, width 128, reliability penalty 2, a 5e-5 actor learning rate,
+2e-3 critic learning rate, PPO clip 0.15, and five updates per round. Use
+`--primary-only` only after the comparison campaign confirms that choice.
 
 The `Native ns-3 extension campaign` GitHub workflow runs only for trusted
 direct pushes to `cluster`; it never runs for pull requests or forks. It first
