@@ -684,7 +684,7 @@ def update_model_from_csv(model, csv_path, config):
                     n_actions,
                     torch.as_tensor(item["q_logp"], dtype=torch.float32),
                     torch.as_tensor(item["n_logp"], dtype=torch.float32),
-                    model["actor_n_action_dims"][agent],
+                    valid_retransmission_count(agent, config, model["actor_n_action_dims"][agent]),
                 )
             )
 
@@ -950,7 +950,8 @@ def verify_cpp_action_log_probabilities(model, csv_path, config):
         q_actions = torch.as_tensor(item["q_actions"], dtype=torch.long)
         n_actions = torch.as_tensor(item["n_actions"], dtype=torch.long)
         with torch.no_grad():
-            q_logits, n_logits = model["actors"][agent](obs, model["actor_n_action_dims"][agent])
+            valid_n = valid_retransmission_count(agent, config, model["actor_n_action_dims"][agent])
+            q_logits, n_logits = model["actors"][agent](obs, valid_n)
             q_logp = Categorical(logits=q_logits).log_prob(q_actions).cpu().numpy()
             n_logp = Categorical(logits=n_logits).log_prob(n_actions).cpu().numpy()
         if not np.allclose(q_logp, item["q_logp"], rtol=2e-5, atol=2e-5):
