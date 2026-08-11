@@ -106,19 +106,22 @@ def verify_paper_configuration(config):
 class ActorNetwork(nn.Module):
     """Decentralized policy with categorical power and HARQ action heads."""
 
-    def __init__(self, obs_dim, hidden_dim, q_max, n_action_dim):
+    def __init__(self, obs_dim, hidden_dim, q_max, n_action_dim, hidden_layer_count=2):
         super().__init__()
-        self.fc1 = nn.Linear(obs_dim, hidden_dim)
-        self.fc2 = nn.Linear(hidden_dim, hidden_dim)
+        self.hidden_layers = nn.ModuleList(
+            [nn.Linear(obs_dim if index == 0 else hidden_dim, hidden_dim)
+             for index in range(hidden_layer_count)]
+        )
         self.power_head = nn.Linear(hidden_dim, q_max)
         self.retransmission_head = nn.Linear(hidden_dim, n_action_dim)
-        for layer in (self.fc1, self.fc2, self.power_head, self.retransmission_head):
+        for layer in (*self.hidden_layers, self.power_head, self.retransmission_head):
             nn.init.orthogonal_(layer.weight, gain=math.sqrt(2.0))
             nn.init.constant_(layer.bias, 0.0)
 
     def forward(self, obs, valid_n_count):
-        hidden = F.relu(self.fc1(obs))
-        hidden = F.relu(self.fc2(hidden))
+        hidden = obs
+        for layer in self.hidden_layers:
+            hidden = F.relu(layer(hidden))
         power_logits = self.power_head(hidden)
         retransmission_logits = self.retransmission_head(hidden)
         if valid_n_count < retransmission_logits.shape[-1]:
@@ -130,18 +133,21 @@ class ActorNetwork(nn.Module):
 class CriticNetwork(nn.Module):
     """Centralized value network used only during training."""
 
-    def __init__(self, state_dim, hidden_dim):
+    def __init__(self, state_dim, hidden_dim, hidden_layer_count=2):
         super().__init__()
-        self.fc1 = nn.Linear(state_dim, hidden_dim)
-        self.fc2 = nn.Linear(hidden_dim, hidden_dim)
+        self.hidden_layers = nn.ModuleList(
+            [nn.Linear(state_dim if index == 0 else hidden_dim, hidden_dim)
+             for index in range(hidden_layer_count)]
+        )
         self.value_head = nn.Linear(hidden_dim, 1)
-        for layer in (self.fc1, self.fc2, self.value_head):
+        for layer in (*self.hidden_layers, self.value_head):
             nn.init.orthogonal_(layer.weight, gain=math.sqrt(2.0))
             nn.init.constant_(layer.bias, 0.0)
 
     def forward(self, state):
-        hidden = F.relu(self.fc1(state))
-        hidden = F.relu(self.fc2(hidden))
+        hidden = state
+        for layer in self.hidden_layers:
+            hidden = F.relu(layer(hidden))
         return self.value_head(hidden).squeeze(-1)
 
 
@@ -177,6 +183,7 @@ def create_model(config):
     obs_dim = k + 2
     state_dim = 3 * k
     hidden_dim = int(config["hidden_dim"])
+    hidden_layer_count = int(config["hidden_layer_count"])
     q_max = int(config["q_max"])
     actor_n_action_dims = []
     for agent in range(k):
@@ -186,14 +193,16 @@ def create_model(config):
         actor_n_action_dims.append(int(math.floor(latency_ms / config["retransmission_ms"])) + 1)
     n_action_dim = max(actor_n_action_dims)
     actors = [
-        ActorNetwork(obs_dim, hidden_dim, q_max, actor_n_action_dims[agent]) for agent in range(k)
+        ActorNetwork(obs_dim, hidden_dim, q_max, actor_n_action_dims[agent], hidden_layer_count)
+        for agent in range(k)
     ]
-    critic = CriticNetwork(state_dim, hidden_dim)
+    critic = CriticNetwork(state_dim, hidden_dim, hidden_layer_count)
     model = {
         "k": k,
         "obs_dim": obs_dim,
         "state_dim": state_dim,
         "hidden_dim": hidden_dim,
+        "hidden_layer_count": hidden_layer_count,
         "q_max": q_max,
         "n_action_dim": n_action_dim,
         "actor_n_action_dims": actor_n_action_dims,
@@ -220,8 +229,8 @@ def save_model_npz(model, path):
     try:
         torch.save(
             {
-                "format": "torch_mappo_v2",
-                "meta": [model[key] for key in ("k", "obs_dim", "state_dim", "hidden_dim", "q_max", "n_action_dim")],
+                "format": "torch_mappo_v3",
+                "meta": [model[key] for key in ("k", "obs_dim", "state_dim", "hidden_dim", "hidden_layer_count", "q_max", "n_action_dim")],
                 "actor_n_action_dims": model["actor_n_action_dims"],
                 "actors": [actor.state_dict() for actor in model["actors"]],
                 "critic": model["critic"].state_dict(),
@@ -238,22 +247,23 @@ def save_model_npz(model, path):
 
 def load_model_npz(path):
     data = torch.load(path, map_location="cpu", weights_only=True)
-    if data.get("format") != "torch_mappo_v2":
-        raise ValueError("Checkpoint predates actor-specific retransmission heads; start a fresh campaign.")
+    if data.get("format") != "torch_mappo_v3":
+        raise ValueError("Checkpoint predates configurable hidden-layer support; start a fresh campaign.")
     meta = data["meta"]
     model = {
         "k": meta[0],
         "obs_dim": meta[1],
         "state_dim": meta[2],
         "hidden_dim": meta[3],
-        "q_max": meta[4],
-        "n_action_dim": meta[5],
+        "hidden_layer_count": meta[4],
+        "q_max": meta[5],
+        "n_action_dim": meta[6],
         "actor_n_action_dims": list(data["actor_n_action_dims"]),
         "actors": [
-            ActorNetwork(meta[1], meta[3], meta[4], n_action_dim)
+            ActorNetwork(meta[1], meta[3], meta[5], n_action_dim, meta[4])
             for n_action_dim in data["actor_n_action_dims"]
         ],
-        "critic": CriticNetwork(meta[2], meta[3]),
+        "critic": CriticNetwork(meta[2], meta[3], meta[4]),
     }
     for actor, state_dict in zip(model["actors"], data["actors"]):
         actor.load_state_dict(state_dict)
@@ -284,19 +294,19 @@ def write_cpp_weights(model, path):
     temporary_path = temporary_artifact_path(path)
     try:
         with temporary_path.open("w", encoding="utf-8", newline="\n") as f:
-            f.write("HRLLC_TSN_MAPPO_WEIGHTS_V1\n")
+            f.write("HRLLC_TSN_MAPPO_WEIGHTS_V2\n")
             f.write(f"K {model['k']}\n")
             f.write(f"OBS_DIM {model['obs_dim']}\n")
             f.write(f"STATE_DIM {model['state_dim']}\n")
             f.write(f"HIDDEN_DIM {model['hidden_dim']}\n")
+            f.write(f"HIDDEN_LAYER_COUNT {model['hidden_layer_count']}\n")
             f.write(f"Q_MAX {model['q_max']}\n")
             f.write(f"N_ACTION_DIM {model['n_action_dim']}\n")
             for i, actor in enumerate(model["actors"]):
                 f.write(f"ACTOR {i}\n")
-                write_matrix(f, "W1", actor.fc1.weight.detach().cpu().numpy())
-                write_vector(f, "B1", actor.fc1.bias.detach().cpu().numpy())
-                write_matrix(f, "W2", actor.fc2.weight.detach().cpu().numpy())
-                write_vector(f, "B2", actor.fc2.bias.detach().cpu().numpy())
+                for layer_index, layer in enumerate(actor.hidden_layers, start=1):
+                    write_matrix(f, f"W{layer_index}", layer.weight.detach().cpu().numpy())
+                    write_vector(f, f"B{layer_index}", layer.bias.detach().cpu().numpy())
                 write_matrix(f, "WQ", actor.power_head.weight.detach().cpu().numpy())
                 write_vector(f, "BQ", actor.power_head.bias.detach().cpu().numpy())
                 write_matrix(f, "WN", actor.retransmission_head.weight.detach().cpu().numpy())
@@ -321,8 +331,8 @@ def ensure_model(config, reset=False):
             model = create_model(config)
             save_model_npz(model, CURRENT_NPZ)
             recreated = True
-        expected = (int(config["k"]), int(config["k"]) + 2, 3 * int(config["k"]))
-        actual = (model["k"], model["obs_dim"], model["state_dim"])
+        expected = (int(config["k"]), int(config["k"]) + 2, 3 * int(config["k"]), int(config["hidden_layer_count"]))
+        actual = (model["k"], model["obs_dim"], model["state_dim"], model["hidden_layer_count"])
         if actual != expected:
             model = create_model(config)
             save_model_npz(model, CURRENT_NPZ)
@@ -1167,8 +1177,8 @@ def main():
         CONFIG_PATH = args.config.resolve()
 
     config = load_config()
-    if int(config["hidden_layer_count"]) != 2:
-        raise ValueError("This weight-file format implements exactly two hidden layers.")
+    if int(config["hidden_layer_count"]) not in {2, 3}:
+        raise ValueError("hidden_layer_count must be 2 or 3 for the native ns-3 weight format.")
     if len(config["initial_action_power_bias"]) < int(config["q_max"]):
         raise ValueError("initial_action_power_bias must contain at least q_max values.")
     if config.get("shadow_fading_mode") not in {"iid_per_step", "static_per_scenario"}:

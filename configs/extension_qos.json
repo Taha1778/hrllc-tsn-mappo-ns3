@@ -1,15 +1,15 @@
 {
   "enforce_paper_configuration": false,
-  "extension_label": "policy_tuning_qos_extension",
+  "extension_label": "paper_method_hyperparameter_tuning_extension",
   "base_configuration": "configs/default_config.json",
   "selection_metric": "equal_weight_mean(failure_rate, latency_violation_rate, reliability_violation_rate)",
   "selection_candidates": [
-    {"name": "reward-1-mask-off", "reliability_penalty_weight": 1.0, "conservative_retry_feasibility_mask": false},
-    {"name": "reward-1-mask-on", "reliability_penalty_weight": 1.0, "conservative_retry_feasibility_mask": true},
-    {"name": "reward-2-mask-off", "reliability_penalty_weight": 2.0, "conservative_retry_feasibility_mask": false},
-    {"name": "reward-2-mask-on", "reliability_penalty_weight": 2.0, "conservative_retry_feasibility_mask": true},
-    {"name": "reward-4-mask-off", "reliability_penalty_weight": 4.0, "conservative_retry_feasibility_mask": false},
-    {"name": "reward-4-mask-on", "reliability_penalty_weight": 4.0, "conservative_retry_feasibility_mask": true}
+    {"name": "baseline-h2-d64-r1", "hidden_layer_count": 2, "hidden_dim": 64, "reliability_penalty_weight": 1.0, "conservative_retry_feasibility_mask": false},
+    {"name": "penalty-h2-d64-r2", "hidden_layer_count": 2, "hidden_dim": 64, "reliability_penalty_weight": 2.0, "conservative_retry_feasibility_mask": false},
+    {"name": "depth-h3-d64-r2", "hidden_layer_count": 3, "hidden_dim": 64, "reliability_penalty_weight": 2.0, "conservative_retry_feasibility_mask": false},
+    {"name": "width-h2-d128-r2", "hidden_layer_count": 2, "hidden_dim": 128, "reliability_penalty_weight": 2.0, "conservative_retry_feasibility_mask": false},
+    {"name": "deep-wide-h3-d128-r2", "hidden_layer_count": 3, "hidden_dim": 128, "reliability_penalty_weight": 2.0, "conservative_retry_feasibility_mask": false},
+    {"name": "deep-wide-stable-h3-d128-r2", "hidden_layer_count": 3, "hidden_dim": 128, "reliability_penalty_weight": 2.0, "actor_learning_rate": 0.00005, "critic_learning_rate": 0.002, "ppo_clip": 0.15, "updates_per_round": 5, "conservative_retry_feasibility_mask": false}
   ],
   "critic_loss": "huber",
   "random_gcl": false,

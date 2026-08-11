@@ -36,10 +36,8 @@ struct Matrix
 
 struct ActorWeights
 {
-  Matrix w1;
-  std::vector<double> b1;
-  Matrix w2;
-  std::vector<double> b2;
+  std::vector<Matrix> hiddenWeights;
+  std::vector<std::vector<double>> hiddenBiases;
   Matrix wq;
   std::vector<double> bq;
   Matrix wn;
@@ -52,6 +50,7 @@ struct ModelWeights
   uint32_t obsDim = 0;
   uint32_t stateDim = 0;
   uint32_t hiddenDim = 0;
+  uint32_t hiddenLayerCount = 0;
   uint32_t qMax = 0;
   uint32_t nActionDim = 0;
   std::vector<ActorWeights> actors;
@@ -192,12 +191,17 @@ LoadWeights (const std::string& path)
       throw std::runtime_error ("Could not open weights file: " + path);
     }
 
-  ExpectLabel (input, "HRLLC_TSN_MAPPO_WEIGHTS_V1");
+  ExpectLabel (input, "HRLLC_TSN_MAPPO_WEIGHTS_V2");
   ModelWeights weights;
   weights.k = ReadUInt (input, "K");
   weights.obsDim = ReadUInt (input, "OBS_DIM");
   weights.stateDim = ReadUInt (input, "STATE_DIM");
   weights.hiddenDim = ReadUInt (input, "HIDDEN_DIM");
+  weights.hiddenLayerCount = ReadUInt (input, "HIDDEN_LAYER_COUNT");
+  if (weights.hiddenLayerCount < 2 || weights.hiddenLayerCount > 3)
+    {
+      throw std::runtime_error ("HIDDEN_LAYER_COUNT must be 2 or 3");
+    }
   weights.qMax = ReadUInt (input, "Q_MAX");
   weights.nActionDim = ReadUInt (input, "N_ACTION_DIM");
   weights.actors.resize (weights.k);
@@ -212,10 +216,13 @@ LoadWeights (const std::string& path)
           throw std::runtime_error ("Actor index mismatch in weights");
         }
       auto& actor = weights.actors[k];
-      actor.w1 = ReadMatrix (input, "W1");
-      actor.b1 = ReadVector (input, "B1");
-      actor.w2 = ReadMatrix (input, "W2");
-      actor.b2 = ReadVector (input, "B2");
+      actor.hiddenWeights.reserve (weights.hiddenLayerCount);
+      actor.hiddenBiases.reserve (weights.hiddenLayerCount);
+      for (uint32_t layer = 1; layer <= weights.hiddenLayerCount; ++layer)
+        {
+          actor.hiddenWeights.push_back (ReadMatrix (input, "W" + std::to_string (layer)));
+          actor.hiddenBiases.push_back (ReadVector (input, "B" + std::to_string (layer)));
+        }
       actor.wq = ReadMatrix (input, "WQ");
       actor.bq = ReadVector (input, "BQ");
       actor.wn = ReadMatrix (input, "WN");
@@ -225,8 +232,8 @@ LoadWeights (const std::string& path)
   return weights;
 }
 
-// Minimal neural-network inference implementation. It mirrors Python's two
-// ReLU layers and two softmax action heads without depending on a ML runtime.
+// Minimal neural-network inference implementation. It mirrors Python's
+// configurable 2/3 ReLU layers and two softmax action heads without a ML runtime.
 std::vector<double>
 Linear (const Matrix& w, const std::vector<double>& b, const std::vector<double>& x)
 {
@@ -292,10 +299,13 @@ ForwardActor (const ActorWeights& actor,
               uint32_t validNCount,
               double maskLogit)
 {
-  const auto h1 = Relu (Linear (actor.w1, actor.b1, obs));
-  const auto h2 = Relu (Linear (actor.w2, actor.b2, h1));
-  return {Softmax (Linear (actor.wq, actor.bq, h2)),
-          MaskedSoftmax (Linear (actor.wn, actor.bn, h2), validNCount, maskLogit)};
+  std::vector<double> hidden = obs;
+  for (std::size_t layer = 0; layer < actor.hiddenWeights.size (); ++layer)
+    {
+      hidden = Relu (Linear (actor.hiddenWeights[layer], actor.hiddenBiases[layer], hidden));
+    }
+  return {Softmax (Linear (actor.wq, actor.bq, hidden)),
+          MaskedSoftmax (Linear (actor.wn, actor.bn, hidden), validNCount, maskLogit)};
 }
 
 uint32_t

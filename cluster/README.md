@@ -94,12 +94,20 @@ The repository also includes two GitHub Actions workflows:
 ## Native ns-3 QoS extension
 
 `configs/extension_qos.json` is a separately labelled extension configuration.
-It keeps the network and QoS constraints unchanged while screening six MAPPO-H
-policy choices: reliability-reward weight 1/2/4 with the conservative retry
-mask disabled/enabled. `cluster/submit_ns3_campaign_ray.py` gives every Ray
-task a private `runs/` and `weights/` workspace, trains Python MAPPO, then
-executes the local C++ ns-3 binary and ranks candidates by the equal-weight
-mean of failure, latency-violation, and reliability-violation rates.
+It keeps the paper-style MAPPO-H method, network scenario, traffic, and QoS
+constraints unchanged while screening six implementation configurations:
+two/three hidden layers, width 64/128, reliability penalty 1/2, and one
+conservative learning-rate/PPO setting. The conservative retry mask is kept
+disabled because the completed native selection showed that it harmed
+reliability. `cluster/submit_ns3_campaign_ray.py` gives every Ray task a
+private `runs/` and `weights/` workspace, trains Python MAPPO, then executes
+the local C++ ns-3 binary and ranks candidates by the equal-weight mean of
+failure, latency-violation, and reliability-violation rates.
+
+The Python and C++ weight format supports exactly two or three ReLU hidden
+layers. A candidate is selected using validation seeds only; its final test
+metrics remain separate from the selection decision. All generated reports
+record the candidate configuration, seeds, Git commit, and source provenance.
 
 The `Native ns-3 extension campaign` GitHub workflow runs only for trusted
 direct pushes to `cluster`; it never runs for pull requests or forks. It first
