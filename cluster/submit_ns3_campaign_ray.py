@@ -37,7 +37,9 @@ def qos_score(metrics: dict) -> float:
 
 
 def task_id(task: dict) -> str:
-    return "__".join(f"{key}-{task[key]}" for key in ("phase", "variant", "axis", "value", "seed"))
+    candidate_name = task.get("candidate", {}).get("name", "default")
+    fields = ("phase", "variant", "axis", "value", "seed")
+    return "__".join([f"candidate-{candidate_name}", *(f"{key}-{task[key]}" for key in fields)])
 
 
 def make_config(base: dict, candidate: dict, variant: str) -> dict:
