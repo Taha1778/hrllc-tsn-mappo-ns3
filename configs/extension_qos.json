@@ -4,6 +4,7 @@
   "base_configuration": "configs/default_config.json",
   "selection_metric": "equal_weight_mean(failure_rate, latency_violation_rate, reliability_violation_rate)",
   "primary_candidate": "deep-wide-stable-h3-d128-r2",
+  "selected_figure_candidate": "deep-wide-h3-d128-r2",
   "selection_candidates": [
     {"name": "baseline-h2-d64-r1", "hidden_layer_count": 2, "hidden_dim": 64, "reliability_penalty_weight": 1.0, "conservative_retry_feasibility_mask": false},
     {"name": "penalty-h2-d64-r2", "hidden_layer_count": 2, "hidden_dim": 64, "reliability_penalty_weight": 2.0, "conservative_retry_feasibility_mask": false},

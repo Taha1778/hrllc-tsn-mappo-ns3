@@ -119,3 +119,16 @@ direct pushes to `cluster`; it never runs for pull requests or forks. It first
 performs the native preflight, synchronizes the exact Python/C++ source revision
 to each Ray pod, rebuilds ns-3 locally, and persists `selection.json` under
 `/cluster-results/native-ns3/<commit>-<run-id>`.
+
+## One-command Figures 7--13 campaign
+
+After the selection campaign, `scripts/run_full_paper_figures_cluster.sh`
+synchronizes the exact committed sources to every Ray pod, rebuilds native
+ns-3 on every node, runs the complete sweep, refuses incomplete or mixed-commit
+data, renders PNG/PDF/CSV outputs for Figures 7--13, and pushes only the
+validated artifacts to `cluster`.  The selected configuration is
+`deep-wide-h3-d128-r2`, which won the held-out-safe validation campaign.
+
+MAPPO-H/M/R/S series are labelled native ns-3 measurements.  CPPO, DQN,
+MADDPG, BCD, and Random remain explicitly labelled Python-reference baselines;
+the workflow never presents them as native ns-3 measurements.
