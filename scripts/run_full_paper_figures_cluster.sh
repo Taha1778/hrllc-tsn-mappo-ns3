@@ -1,7 +1,17 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 cd "$(dirname "$0")/.."
+
+# Authenticate before the long unattended run.  The in-memory Git credential
+# cache outlives the campaign without writing the token to disk.  sudo is kept
+# warm because aggregation still needs kubectl after the experiments finish.
+git config --global credential.helper 'cache --timeout=604800'
+git ls-remote origin >/dev/null
 sudo -v
+(while true; do sudo -n true || exit; sleep 45; done) &
+SUDO_KEEPALIVE_PID=$!
+trap 'kill "$SUDO_KEEPALIVE_PID" 2>/dev/null || true' EXIT
+
 git pull --ff-only origin cluster
 COMMIT=$(git rev-parse HEAD)
 HEAD_POD=$(sudo k3s kubectl get pods -n ray-system -l ray.io/node-type=head -o jsonpath='{.items[0].metadata.name}')
