@@ -10,6 +10,9 @@ from matplotlib.ticker import PercentFormatter
 KS=(2,4,6,8,10,12); RADII=(100,150,200,250,300,350); POWERS=(20,30,40,50,60); GAMMAS=(3,4,5,6,7)
 
 def mean(rows, key): return sum(float(r["metrics"][key]) for r in rows)/len(rows)
+def reference_task(row):
+    """Return reference-task metadata from both supported result schemas."""
+    return row.get("task", row)
 def save(fig, out, stem):
     fig.tight_layout(); fig.savefig(out/f"{stem}.png", dpi=180); fig.savefig(out/f"{stem}.pdf"); plt.close(fig)
 def main():
@@ -22,7 +25,9 @@ def main():
     for r in rows:
         if r["source"].startswith("native_ns3"):
             t=r["task"]; native[(t["variant"],t["axis"],str(t["value"]),str(t.get("base_config",{}).get("gamma_threshold_db","")))].append(r)
-        else: ref[(r["task"]["method"],r["task"]["axis"],str(r["task"]["value"]))].append(r)
+        else:
+            t=reference_task(r)
+            ref[(t["method"],t["axis"],str(t["value"]))].append(r)
     # Native lookup tolerates numeric JSON formatting and identifies gamma via saved config when present.
     def nrows(variant, axis, value, gamma=None):
         found=[]
