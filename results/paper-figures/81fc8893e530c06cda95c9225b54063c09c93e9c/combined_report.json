@@ -1,0 +1,23 @@
+{
+  "git_commit": "81fc8893e530c06cda95c9225b54063c09c93e9c",
+  "selected_candidate": {
+    "name": "deep-wide-h3-d128-r2",
+    "hidden_layer_count": 3,
+    "hidden_dim": 128,
+    "reliability_penalty_weight": 2.0,
+    "conservative_retry_feasibility_mask": false
+  },
+  "figures": [
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "provenance": {
+    "native": "C++ ns-3 with Python MAPPO",
+    "reference": "Python reference baselines; legends label these explicitly"
+  }
+}

@@ -1,0 +1,849 @@
+{
+  "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+  "selection_metric": "equal_weight_mean(failure_rate, latency_violation_rate, reliability_violation_rate)",
+  "scores": {
+    "baseline-h2-d64-r1": 0.0049959697420634925,
+    "penalty-h2-d64-r2": 0.004844835069444446,
+    "depth-h3-d64-r2": 0.005017671130952381,
+    "width-h2-d128-r2": 0.00481538318452381,
+    "deep-wide-h3-d128-r2": 0.004216269841269843,
+    "deep-wide-stable-h3-d128-r2": 0.004935515873015874
+  },
+  "winner": "deep-wide-h3-d128-r2",
+  "selection_tasks": [
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "baseline-h2-d64-r1",
+        "hidden_layer_count": 2,
+        "hidden_dim": 64,
+        "reliability_penalty_weight": 1.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 481.732,
+      "stdout": "5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0986.csv failure_rate=0.0030692 reward_mean=-0.201505\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0987.csv failure_rate=0.00167411 reward_mean=-0.0217188\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0988.csv failure_rate=0.00125558 reward_mean=-0.0139215\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0989.csv failure_rate=0.00125558 reward_mean=-0.0374794\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0990.csv failure_rate=0.00432478 reward_mean=-0.243236\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0991.csv failure_rate=0.0107422 reward_mean=-0.25434\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0992.csv failure_rate=0.00418527 reward_mean=-0.106244\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0993.csv failure_rate=0.00558036 reward_mean=-0.112632\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0994.csv failure_rate=0.00265067 reward_mean=-0.0355394\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0995.csv failure_rate=0.00460379 reward_mean=-0.342112\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0996.csv failure_rate=0.00641741 reward_mean=-1.25774\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0997.csv failure_rate=0.00683594 reward_mean=-0.137179\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0998.csv failure_rate=0.00223214 reward_mean=-0.0548034\nvalidation_round=999 mean_failure_rate=0.00763811 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0999.csv failure_rate=0.00223214 reward_mean=-0.0527189\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.26607367172782864,
+        "failure_rate": 0.00661272321428572,
+        "latency_violation_rate": 0.0038295200892857137,
+        "reliability_violation_rate": 0.0038295200892857146,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.9632125418526782,
+        "avg_failure_probability": 7.878242540268318e-05,
+        "training_round": 899,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.0047572544642857165
+      },
+      "qos_score": 0.0047572544642857165
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 44,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "baseline-h2-d64-r1",
+        "hidden_layer_count": 2,
+        "hidden_dim": 64,
+        "reliability_penalty_weight": 1.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 537.05,
+      "stdout": "5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0986.csv failure_rate=0.00167411 reward_mean=-0.0126714\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0987.csv failure_rate=0.00237165 reward_mean=-0.0239724\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0988.csv failure_rate=0.00334821 reward_mean=-0.170727\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0989.csv failure_rate=0.0114397 reward_mean=-0.313031\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0990.csv failure_rate=0.00418527 reward_mean=-0.116241\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0991.csv failure_rate=0.00544085 reward_mean=-0.116854\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0992.csv failure_rate=0.00237165 reward_mean=-0.0425122\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0993.csv failure_rate=0.00585938 reward_mean=-0.18338\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0994.csv failure_rate=0.00613839 reward_mean=-1.1532\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0995.csv failure_rate=0.00558036 reward_mean=-0.124792\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0996.csv failure_rate=0.00195312 reward_mean=-0.0521968\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0997.csv failure_rate=0.00209263 reward_mean=-0.0405705\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0998.csv failure_rate=0.00460379 reward_mean=-0.158185\nvalidation_round=999 mean_failure_rate=0.00833566 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0999.csv failure_rate=0.00376674 reward_mean=-0.0891555\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.29558713489430904,
+        "failure_rate": 0.007645089285714285,
+        "latency_violation_rate": 0.004275948660714285,
+        "reliability_violation_rate": 0.004464285714285714,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.9625080217633926,
+        "avg_failure_probability": 9.757062144351918e-05,
+        "training_round": 649,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.005461774553571427
+      },
+      "qos_score": 0.005461774553571427
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 43,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "baseline-h2-d64-r1",
+        "hidden_layer_count": 2,
+        "hidden_dim": 64,
+        "reliability_penalty_weight": 1.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 538.056,
+      "stdout": "5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0986.csv failure_rate=0.00125558 reward_mean=-0.0112521\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0987.csv failure_rate=0.00111607 reward_mean=-0.0197914\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0988.csv failure_rate=0.00125558 reward_mean=-0.0320862\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0989.csv failure_rate=0.00460379 reward_mean=-0.221221\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0990.csv failure_rate=0.0129743 reward_mean=-0.310663\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0991.csv failure_rate=0.00488281 reward_mean=-0.103831\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0992.csv failure_rate=0.00432478 reward_mean=-0.103878\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0993.csv failure_rate=0.00334821 reward_mean=-0.0673666\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0994.csv failure_rate=0.00502232 reward_mean=-0.190476\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0995.csv failure_rate=0.0062779 reward_mean=-1.14874\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0996.csv failure_rate=0.00711496 reward_mean=-0.167807\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0997.csv failure_rate=0.00195312 reward_mean=-0.0513408\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0998.csv failure_rate=0.00320871 reward_mean=-0.063592\nvalidation_round=999 mean_failure_rate=0.00662667 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0999.csv failure_rate=0.00390625 reward_mean=-0.166689\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-baseline-h2-d64-r1__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.2676630218024976,
+        "failure_rate": 0.006626674107142854,
+        "latency_violation_rate": 0.003843470982142857,
+        "reliability_violation_rate": 0.0038364955357142864,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.9626876395089283,
+        "avg_failure_probability": 8.621388072423266e-05,
+        "training_round": 999,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.004768880208333333
+      },
+      "qos_score": 0.004768880208333333
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "penalty-h2-d64-r2",
+        "hidden_layer_count": 2,
+        "hidden_dim": 64,
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 499.052,
+      "stdout": "fb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0986.csv failure_rate=0.00279018 reward_mean=-0.184326\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0987.csv failure_rate=0.00167411 reward_mean=-0.0319734\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0988.csv failure_rate=0.00195312 reward_mean=-0.0133789\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0989.csv failure_rate=0.00195312 reward_mean=-0.0677595\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0990.csv failure_rate=0.00334821 reward_mean=-0.288778\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0991.csv failure_rate=0.0117188 reward_mean=-0.508123\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0992.csv failure_rate=0.00348772 reward_mean=-0.142738\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0993.csv failure_rate=0.00334821 reward_mean=-0.185103\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0994.csv failure_rate=0.000279018 reward_mean=-0.00838694\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0995.csv failure_rate=0.00571987 reward_mean=-0.382825\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0996.csv failure_rate=0.00558036 reward_mean=-0.924455\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0997.csv failure_rate=0.00683594 reward_mean=-0.283175\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0998.csv failure_rate=0.00223214 reward_mean=-0.10724\nvalidation_round=999 mean_failure_rate=0.00716378 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0999.csv failure_rate=0.00223214 reward_mean=-0.0809874\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.44493059539521357,
+        "failure_rate": 0.006968470982142871,
+        "latency_violation_rate": 0.004066685267857143,
+        "reliability_violation_rate": 0.003976004464285714,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.9560818917410718,
+        "avg_failure_probability": 0.00010115638783302715,
+        "training_round": 849,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.005003720238095243
+      },
+      "qos_score": 0.005003720238095243
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 43,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "penalty-h2-d64-r2",
+        "hidden_layer_count": 2,
+        "hidden_dim": 64,
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 541.035,
+      "stdout": "ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0986.csv failure_rate=0.000558036 reward_mean=-0.0147209\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0987.csv failure_rate=0.00125558 reward_mean=-0.0285575\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0988.csv failure_rate=0.00195312 reward_mean=-0.0628674\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0989.csv failure_rate=0.00390625 reward_mean=-0.27786\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0990.csv failure_rate=0.0115792 reward_mean=-0.512811\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0991.csv failure_rate=0.00348772 reward_mean=-0.134925\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0992.csv failure_rate=0.00404576 reward_mean=-0.188763\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0993.csv failure_rate=0.00167411 reward_mean=-0.0224227\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0994.csv failure_rate=0.00502232 reward_mean=-0.39213\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0995.csv failure_rate=0.00502232 reward_mean=-0.854746\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0996.csv failure_rate=0.00683594 reward_mean=-0.310611\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0997.csv failure_rate=0.00251116 reward_mean=-0.121958\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0998.csv failure_rate=0.00265067 reward_mean=-0.0944429\nvalidation_round=999 mean_failure_rate=0.0066755 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0999.csv failure_rate=0.00669643 reward_mean=-0.4369\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.33515796781935936,
+        "failure_rate": 0.0063197544642857205,
+        "latency_violation_rate": 0.0037527901785714287,
+        "reliability_violation_rate": 0.0035505022321428567,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.962445242745536,
+        "avg_failure_probability": 8.065388566337082e-05,
+        "training_round": 949,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.004541015625000002
+      },
+      "qos_score": 0.004541015625000002
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 44,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "penalty-h2-d64-r2",
+        "hidden_layer_count": 2,
+        "hidden_dim": 64,
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 540.861,
+      "stdout": "ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0986.csv failure_rate=0.00237165 reward_mean=-0.0401368\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0987.csv failure_rate=0.000976562 reward_mean=-0.0365074\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0988.csv failure_rate=0.00334821 reward_mean=-0.277847\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0989.csv failure_rate=0.0114397 reward_mean=-0.562027\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0990.csv failure_rate=0.00488281 reward_mean=-0.162498\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0991.csv failure_rate=0.00446429 reward_mean=-0.197736\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0992.csv failure_rate=0.0030692 reward_mean=-0.0561251\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0993.csv failure_rate=0.00613839 reward_mean=-0.330646\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0994.csv failure_rate=0.00530134 reward_mean=-1.13871\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0995.csv failure_rate=0.00655692 reward_mean=-0.297224\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0996.csv failure_rate=0.00223214 reward_mean=-0.111387\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0997.csv failure_rate=0.00237165 reward_mean=-0.0860466\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0998.csv failure_rate=0.00334821 reward_mean=-0.16601\nvalidation_round=999 mean_failure_rate=0.0073591 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0999.csv failure_rate=0.00376674 reward_mean=-0.123056\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-penalty-h2-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.4290648433523085,
+        "failure_rate": 0.006954520089285715,
+        "latency_violation_rate": 0.00390625,
+        "reliability_violation_rate": 0.004108537946428572,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.95781005859375,
+        "avg_failure_probability": 9.113221765932387e-05,
+        "training_round": 449,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.004989769345238096
+      },
+      "qos_score": 0.004989769345238096
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "depth-h3-d64-r2",
+        "hidden_layer_count": 3,
+        "hidden_dim": 64,
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 670.067,
+      "stdout": "=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0986.csv failure_rate=0.00418527 reward_mean=-0.203955\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0987.csv failure_rate=0.000697545 reward_mean=-0.0240098\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0988.csv failure_rate=0.00181362 reward_mean=-0.0757775\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0989.csv failure_rate=0.00362723 reward_mean=-0.150492\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0990.csv failure_rate=0.00404576 reward_mean=-0.251211\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0991.csv failure_rate=0.0122768 reward_mean=-0.528234\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0992.csv failure_rate=0.00488281 reward_mean=-0.203135\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0993.csv failure_rate=0.00362723 reward_mean=-0.200347\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0994.csv failure_rate=0.00334821 reward_mean=-0.108085\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0995.csv failure_rate=0.00432478 reward_mean=-0.287537\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0996.csv failure_rate=0.00460379 reward_mean=-0.685992\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0997.csv failure_rate=0.0062779 reward_mean=-0.302501\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0998.csv failure_rate=0.0030692 reward_mean=-0.157083\nvalidation_round=999 mean_failure_rate=0.00708705 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0999.csv failure_rate=0.00237165 reward_mean=-0.116059\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.4200731126857627,
+        "failure_rate": 0.006612723214285715,
+        "latency_violation_rate": 0.0037318638392857136,
+        "reliability_violation_rate": 0.003989955357142857,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.9584953962053568,
+        "avg_failure_probability": 9.515922438013119e-05,
+        "training_round": 949,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.004778180803571429
+      },
+      "qos_score": 0.004778180803571429
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 43,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "depth-h3-d64-r2",
+        "hidden_layer_count": 3,
+        "hidden_dim": 64,
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 674.542,
+      "stdout": "sv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0986.csv failure_rate=0.00139509 reward_mean=-0.0367977\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0987.csv failure_rate=0.00195312 reward_mean=-0.0488535\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0988.csv failure_rate=0.00125558 reward_mean=-0.0788439\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0989.csv failure_rate=0.00334821 reward_mean=-0.21426\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0990.csv failure_rate=0.0119978 reward_mean=-0.600144\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0991.csv failure_rate=0.00348772 reward_mean=-0.145865\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0992.csv failure_rate=0.00599888 reward_mean=-0.249468\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0993.csv failure_rate=0.00237165 reward_mean=-0.119117\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0994.csv failure_rate=0.00641741 reward_mean=-0.2586\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0995.csv failure_rate=0.00362723 reward_mean=-0.630948\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0996.csv failure_rate=0.00558036 reward_mean=-0.250453\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0997.csv failure_rate=0.00334821 reward_mean=-0.158173\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0998.csv failure_rate=0.00334821 reward_mean=-0.168424\nvalidation_round=999 mean_failure_rate=0.00748465 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0999.csv failure_rate=0.0030692 reward_mean=-0.160481\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.44804997657138346,
+        "failure_rate": 0.007303292410714285,
+        "latency_violation_rate": 0.004101562499999999,
+        "reliability_violation_rate": 0.004255022321428571,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.9579321289062501,
+        "avg_failure_probability": 0.00010448058091288004,
+        "training_round": 949,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.005219959077380952
+      },
+      "qos_score": 0.005219959077380952
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 44,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "depth-h3-d64-r2",
+        "hidden_layer_count": 3,
+        "hidden_dim": 64,
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 676.073,
+      "stdout": "6 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0986.csv failure_rate=0.00181362 reward_mean=-0.0526623\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0987.csv failure_rate=0.00292969 reward_mean=-0.13164\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0988.csv failure_rate=0.00544085 reward_mean=-0.302998\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0989.csv failure_rate=0.0114397 reward_mean=-0.453539\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0990.csv failure_rate=0.00418527 reward_mean=-0.158545\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0991.csv failure_rate=0.00502232 reward_mean=-0.211594\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0992.csv failure_rate=0.00292969 reward_mean=-0.0627233\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0993.csv failure_rate=0.00613839 reward_mean=-0.343264\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0994.csv failure_rate=0.00516183 reward_mean=-0.632006\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0995.csv failure_rate=0.00683594 reward_mean=-0.334153\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0996.csv failure_rate=0.00223214 reward_mean=-0.1146\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0997.csv failure_rate=0.0030692 reward_mean=-0.134032\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0998.csv failure_rate=0.0047433 reward_mean=-0.253176\nvalidation_round=999 mean_failure_rate=0.00701032 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0999.csv failure_rate=0.00334821 reward_mean=-0.15592\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-depth-h3-d64-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.47894483857704007,
+        "failure_rate": 0.007010323660714285,
+        "latency_violation_rate": 0.00396205357142857,
+        "reliability_violation_rate": 0.004192243303571428,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.9560888671874999,
+        "avg_failure_probability": 0.00010005938554716834,
+        "training_round": 999,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.005054873511904761
+      },
+      "qos_score": 0.005054873511904761
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "width-h2-d128-r2",
+        "hidden_layer_count": 2,
+        "hidden_dim": 128,
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 1052.02,
+      "stdout": "ults/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0986.csv failure_rate=0.00320871 reward_mean=-0.184691\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0987.csv failure_rate=0.000976562 reward_mean=-0.0101187\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0988.csv failure_rate=0.000976562 reward_mean=-0.0245743\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0989.csv failure_rate=0.00125558 reward_mean=-0.0655396\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0990.csv failure_rate=0.00516183 reward_mean=-0.403\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0991.csv failure_rate=0.0131138 reward_mean=-0.59408\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0992.csv failure_rate=0.00488281 reward_mean=-0.188588\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0993.csv failure_rate=0.00460379 reward_mean=-0.246858\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0994.csv failure_rate=0.00348772 reward_mean=-0.127805\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0995.csv failure_rate=0.0047433 reward_mean=-0.374506\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0996.csv failure_rate=0.00502232 reward_mean=-1.04871\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0997.csv failure_rate=0.00669643 reward_mean=-0.307128\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0998.csv failure_rate=0.00223214 reward_mean=-0.108231\nvalidation_round=999 mean_failure_rate=0.00613839 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0999.csv failure_rate=0.00334821 reward_mean=-0.136692\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.3590422369120828,
+        "failure_rate": 0.006138392857142854,
+        "latency_violation_rate": 0.003627232142857143,
+        "reliability_violation_rate": 0.003522600446428572,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.9588982282366072,
+        "avg_failure_probability": 9.288133276547896e-05,
+        "training_round": 999,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.004429408482142856
+      },
+      "qos_score": 0.004429408482142856
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 43,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "width-h2-d128-r2",
+        "hidden_layer_count": 2,
+        "hidden_dim": 128,
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 975.845,
+      "stdout": "ts/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0986.csv failure_rate=0.00139509 reward_mean=-0.0403709\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0987.csv failure_rate=0.00251116 reward_mean=-0.0469224\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0988.csv failure_rate=0.00125558 reward_mean=-0.0648355\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0989.csv failure_rate=0.00404576 reward_mean=-0.250667\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0990.csv failure_rate=0.0124163 reward_mean=-0.595405\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0991.csv failure_rate=0.00558036 reward_mean=-0.203217\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0992.csv failure_rate=0.0047433 reward_mean=-0.242335\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0993.csv failure_rate=0.0030692 reward_mean=-0.0808463\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0994.csv failure_rate=0.00613839 reward_mean=-0.428407\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0995.csv failure_rate=0.00418527 reward_mean=-0.609506\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0996.csv failure_rate=0.00544085 reward_mean=-0.254039\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0997.csv failure_rate=0.00265067 reward_mean=-0.106615\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0998.csv failure_rate=0.0030692 reward_mean=-0.140769\nvalidation_round=999 mean_failure_rate=0.00733119 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0999.csv failure_rate=0.00251116 reward_mean=-0.148127\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.4630881859000531,
+        "failure_rate": 0.0069824218750000056,
+        "latency_violation_rate": 0.00400390625,
+        "reliability_violation_rate": 0.004108537946428572,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.9538514927455357,
+        "avg_failure_probability": 9.917181173974515e-05,
+        "training_round": 949,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.005031622023809526
+      },
+      "qos_score": 0.005031622023809526
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 44,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "width-h2-d128-r2",
+        "hidden_layer_count": 2,
+        "hidden_dim": 128,
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 974.8,
+      "stdout": "results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0986.csv failure_rate=0.00265067 reward_mean=-0.0727245\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0987.csv failure_rate=0.00195312 reward_mean=-0.0508702\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0988.csv failure_rate=0.0030692 reward_mean=-0.293538\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0989.csv failure_rate=0.0108817 reward_mean=-0.590188\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0990.csv failure_rate=0.00418527 reward_mean=-0.144807\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0991.csv failure_rate=0.00502232 reward_mean=-0.233511\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0992.csv failure_rate=0.00139509 reward_mean=-0.0187607\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0993.csv failure_rate=0.00571987 reward_mean=-0.34294\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0994.csv failure_rate=0.00390625 reward_mean=-0.637835\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0995.csv failure_rate=0.00585938 reward_mean=-0.249194\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0996.csv failure_rate=0.00265067 reward_mean=-0.113497\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0997.csv failure_rate=0.00348772 reward_mean=-0.15898\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0998.csv failure_rate=0.00446429 reward_mean=-0.224409\nvalidation_round=999 mean_failure_rate=0.007101 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0999.csv failure_rate=0.0030692 reward_mean=-0.11947\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-width-h2-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.4631737742356171,
+        "failure_rate": 0.006912667410714279,
+        "latency_violation_rate": 0.004157366071428572,
+        "reliability_violation_rate": 0.003885323660714286,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.951155482700893,
+        "avg_failure_probability": 0.00011317082747237422,
+        "training_round": 899,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.004985119047619046
+      },
+      "qos_score": 0.004985119047619046
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 44,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "deep-wide-h3-d128-r2",
+        "hidden_layer_count": 3,
+        "hidden_dim": 128,
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 1551.102,
+      "stdout": "full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0986.csv failure_rate=0.000279018 reward_mean=-0.006\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0987.csv failure_rate=0.00348772 reward_mean=-0.121278\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0988.csv failure_rate=0.00558036 reward_mean=-0.50828\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0989.csv failure_rate=0.0107422 reward_mean=-0.505619\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0990.csv failure_rate=0.00488281 reward_mean=-0.151019\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0991.csv failure_rate=0.00446429 reward_mean=-0.229232\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0992.csv failure_rate=0.00376674 reward_mean=-0.161533\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0993.csv failure_rate=0.00585938 reward_mean=-0.458327\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0994.csv failure_rate=0.00446429 reward_mean=-0.779827\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0995.csv failure_rate=0.00864955 reward_mean=-0.354888\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0996.csv failure_rate=0.00209263 reward_mean=-0.0907317\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0997.csv failure_rate=0.00418527 reward_mean=-0.21871\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0998.csv failure_rate=0.00418527 reward_mean=-0.173179\nvalidation_round=999 mean_failure_rate=0.00770089 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0999.csv failure_rate=0.0047433 reward_mean=-0.169664\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.2856982731162609,
+        "failure_rate": 0.005845424107142843,
+        "latency_violation_rate": 0.0034528459821428583,
+        "reliability_violation_rate": 0.0033551897321428574,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.967329799107143,
+        "avg_failure_probability": 6.059987181464953e-05,
+        "training_round": 949,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.004217819940476187
+      },
+      "qos_score": 0.004217819940476187
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 43,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "deep-wide-h3-d128-r2",
+        "hidden_layer_count": 3,
+        "hidden_dim": 128,
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 1557.442,
+      "stdout": "0260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0986.csv failure_rate=0.000976562 reward_mean=-0.0203774\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0987.csv failure_rate=0.0015346 reward_mean=-0.0776097\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0988.csv failure_rate=0.00292969 reward_mean=-0.114459\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0989.csv failure_rate=0.00390625 reward_mean=-0.262608\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0990.csv failure_rate=0.00795201 reward_mean=-0.389262\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0991.csv failure_rate=0.00418527 reward_mean=-0.197889\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0992.csv failure_rate=0.00390625 reward_mean=-0.185172\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0993.csv failure_rate=0.0030692 reward_mean=-0.155109\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0994.csv failure_rate=0.00460379 reward_mean=-0.253794\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0995.csv failure_rate=0.00446429 reward_mean=-1.01779\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0996.csv failure_rate=0.00516183 reward_mean=-0.231303\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0997.csv failure_rate=0.00348772 reward_mean=-0.145747\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0998.csv failure_rate=0.00181362 reward_mean=-0.0776264\nvalidation_round=999 mean_failure_rate=0.00650112 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0999.csv failure_rate=0.00641741 reward_mean=-0.311026\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.3508577439300365,
+        "failure_rate": 0.005950055803571441,
+        "latency_violation_rate": 0.0035086495535714287,
+        "reliability_violation_rate": 0.003417968750000001,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.9586540876116072,
+        "avg_failure_probability": 8.07391066955066e-05,
+        "training_round": 949,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.004292224702380957
+      },
+      "qos_score": 0.004292224702380957
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "deep-wide-h3-d128-r2",
+        "hidden_layer_count": 3,
+        "hidden_dim": 128,
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 1848.864,
+      "stdout": "260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0986.csv failure_rate=0.00488281 reward_mean=-0.216099\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0987.csv failure_rate=0.000976562 reward_mean=-0.035017\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0988.csv failure_rate=0.00195312 reward_mean=-0.0851108\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0989.csv failure_rate=0.00125558 reward_mean=-0.0560963\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0990.csv failure_rate=0.00502232 reward_mean=-0.336416\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0991.csv failure_rate=0.0128348 reward_mean=-0.521763\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0992.csv failure_rate=0.00279018 reward_mean=-0.168404\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0993.csv failure_rate=0.00530134 reward_mean=-0.245299\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0994.csv failure_rate=0.000697545 reward_mean=-0.0075\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0995.csv failure_rate=0.00558036 reward_mean=-0.285279\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0996.csv failure_rate=0.00446429 reward_mean=-0.792699\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0997.csv failure_rate=0.00585938 reward_mean=-0.285466\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0998.csv failure_rate=0.00223214 reward_mean=-0.0976993\nvalidation_round=999 mean_failure_rate=0.00578265 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0999.csv failure_rate=0.00320871 reward_mean=-0.137217\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.3382616726633119,
+        "failure_rate": 0.005782645089285721,
+        "latency_violation_rate": 0.003041294642857143,
+        "reliability_violation_rate": 0.0035923549107142855,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.963695591517857,
+        "avg_failure_probability": 6.827520377630508e-05,
+        "training_round": 999,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.004138764880952383
+      },
+      "qos_score": 0.004138764880952383
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "deep-wide-stable-h3-d128-r2",
+        "hidden_layer_count": 3,
+        "hidden_dim": 128,
+        "reliability_penalty_weight": 2.0,
+        "actor_learning_rate": 5e-05,
+        "critic_learning_rate": 0.002,
+        "ppo_clip": 0.15,
+        "updates_per_round": 5,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 1515.661,
+      "stdout": "_value-8__seed-42/runs/round_0986.csv failure_rate=0.00376674 reward_mean=-0.259209\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0987.csv failure_rate=0.00125558 reward_mean=-0.0355138\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0988.csv failure_rate=0.000976562 reward_mean=-0.0174094\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0989.csv failure_rate=0.00195312 reward_mean=-0.0677953\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0990.csv failure_rate=0.00558036 reward_mean=-0.495038\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0991.csv failure_rate=0.0104632 reward_mean=-0.475821\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0992.csv failure_rate=0.00488281 reward_mean=-0.198416\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0993.csv failure_rate=0.00530134 reward_mean=-0.196964\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0994.csv failure_rate=0.00376674 reward_mean=-0.144217\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0995.csv failure_rate=0.00488281 reward_mean=-0.476839\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0996.csv failure_rate=0.00530134 reward_mean=-1.24265\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0997.csv failure_rate=0.00753348 reward_mean=-0.296491\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0998.csv failure_rate=0.00279018 reward_mean=-0.130053\nvalidation_round=999 mean_failure_rate=0.00687779 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0999.csv failure_rate=0.00237165 reward_mean=-0.124048\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.35030995946302396,
+        "failure_rate": 0.006724330357142849,
+        "latency_violation_rate": 0.00400390625,
+        "reliability_violation_rate": 0.00380859375,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.9582425362723217,
+        "avg_failure_probability": 8.654928795890805e-05,
+        "training_round": 899,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.004845610119047617
+      },
+      "qos_score": 0.004845610119047617
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 43,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "deep-wide-stable-h3-d128-r2",
+        "hidden_layer_count": 3,
+        "hidden_dim": 128,
+        "reliability_penalty_weight": 2.0,
+        "actor_learning_rate": 5e-05,
+        "critic_learning_rate": 0.002,
+        "ppo_clip": 0.15,
+        "updates_per_round": 5,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 1514.637,
+      "stdout": "k__value-8__seed-43/runs/round_0986.csv failure_rate=0.00195312 reward_mean=-0.038234\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0987.csv failure_rate=0.00195312 reward_mean=-0.0676363\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0988.csv failure_rate=0.00167411 reward_mean=-0.0588804\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0989.csv failure_rate=0.0047433 reward_mean=-0.504927\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0990.csv failure_rate=0.0114397 reward_mean=-0.565309\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0991.csv failure_rate=0.00488281 reward_mean=-0.200481\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0992.csv failure_rate=0.00530134 reward_mean=-0.211142\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0993.csv failure_rate=0.00404576 reward_mean=-0.173391\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0994.csv failure_rate=0.00432478 reward_mean=-0.337703\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0995.csv failure_rate=0.00669643 reward_mean=-1.46122\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0996.csv failure_rate=0.00795201 reward_mean=-0.304119\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0997.csv failure_rate=0.00195312 reward_mean=-0.0986014\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0998.csv failure_rate=0.00348772 reward_mean=-0.199938\nvalidation_round=999 mean_failure_rate=0.00733119 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0999.csv failure_rate=0.00446429 reward_mean=-0.268609\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.35117755158660025,
+        "failure_rate": 0.007003348214285726,
+        "latency_violation_rate": 0.004303850446428571,
+        "reliability_violation_rate": 0.0038295200892857146,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.9599968610491068,
+        "avg_failure_probability": 9.306690415056581e-05,
+        "training_round": 849,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.00504557291666667
+      },
+      "qos_score": 0.00504557291666667
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 44,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "deep-wide-stable-h3-d128-r2",
+        "hidden_layer_count": 3,
+        "hidden_dim": 128,
+        "reliability_penalty_weight": 2.0,
+        "actor_learning_rate": 5e-05,
+        "critic_learning_rate": 0.002,
+        "ppo_clip": 0.15,
+        "updates_per_round": 5,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_validation",
+      "returncode": 0,
+      "elapsed_seconds": 1589.276,
+      "stdout": "is-k__value-8__seed-44/runs/round_0986.csv failure_rate=0.00125558 reward_mean=-0.0504783\nround=987 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0987.csv failure_rate=0.000697545 reward_mean=-0.038072\nround=988 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0988.csv failure_rate=0.0047433 reward_mean=-0.469063\nround=989 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0989.csv failure_rate=0.00990513 reward_mean=-0.517788\nround=990 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0990.csv failure_rate=0.00488281 reward_mean=-0.196583\nround=991 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0991.csv failure_rate=0.00446429 reward_mean=-0.221886\nround=992 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0992.csv failure_rate=0.00404576 reward_mean=-0.181844\nround=993 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0993.csv failure_rate=0.00599888 reward_mean=-0.382433\nround=994 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0994.csv failure_rate=0.00641741 reward_mean=-1.5404\nround=995 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0995.csv failure_rate=0.00767299 reward_mean=-0.294154\nround=996 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0996.csv failure_rate=0.00251116 reward_mean=-0.116537\nround=997 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0997.csv failure_rate=0.0030692 reward_mean=-0.148284\nround=998 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0998.csv failure_rate=0.0047433 reward_mean=-0.260988\nvalidation_round=999 mean_failure_rate=0.00677316 seeds=20\nround=999 csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0999.csv failure_rate=0.00613839 reward_mean=-0.245397\nsummary_csv=/cluster-results/native-ns3/0ed15dfb8301ef6f9f5c0186749d2b4f731af39f-full-20260812-110527/native-ns3/candidate-deep-wide-stable-h3-d128-r2__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/summary.csv\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.3464833614749012,
+        "failure_rate": 0.00677315848214286,
+        "latency_violation_rate": 0.004024832589285714,
+        "reliability_violation_rate": 0.003948102678571428,
+        "avg_e2e_ms": 2.8571428571428568,
+        "avg_lw_ms": 1.959149344308036,
+        "avg_failure_probability": 9.434305457280949e-05,
+        "training_round": 999,
+        "validation_seed_count": 20,
+        "selection_qos_score": 0.004915364583333334
+      },
+      "qos_score": 0.004915364583333334
+    }
+  ],
+  "final_test_candidate": "deep-wide-h3-d128-r2",
+  "final_test_metrics": {
+    "reward_mean": -0.34520095008207946,
+    "failure_rate": 0.005186476934523805,
+    "latency_violation_rate": 0.003268694196428571,
+    "reliability_violation_rate": 0.002734840029761905,
+    "avg_e2e_ms": 2.857142857142856,
+    "avg_lw_ms": 1.9637482561383928,
+    "avg_failure_probability": 5.333602321385292e-05
+  },
+  "final_tests": [
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "deep-wide-h3-d128-r2",
+        "hidden_layer_count": 3,
+        "hidden_dim": 128,
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_held_out_test",
+      "returncode": 0,
+      "elapsed_seconds": 58.208,
+      "stdout": "final_test_failure_rate=0.00574358 seeds=100\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.3831485079977968,
+        "failure_rate": 0.005743582589285711,
+        "latency_violation_rate": 0.003812779017857142,
+        "reliability_violation_rate": 0.0027957589285714287,
+        "avg_e2e_ms": 2.857142857142856,
+        "avg_lw_ms": 1.9612454659598213,
+        "avg_failure_probability": 4.8026871736110066e-05
+      },
+      "qos_score": 0.0041173735119047605
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 43,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "deep-wide-h3-d128-r2",
+        "hidden_layer_count": 3,
+        "hidden_dim": 128,
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_held_out_test",
+      "returncode": 0,
+      "elapsed_seconds": 58.245,
+      "stdout": "final_test_failure_rate=0.00487026 seeds=100\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.37903705396164866,
+        "failure_rate": 0.0048702566964285675,
+        "latency_violation_rate": 0.002958984375,
+        "reliability_violation_rate": 0.002728794642857143,
+        "avg_e2e_ms": 2.857142857142856,
+        "avg_lw_ms": 1.9614034598214283,
+        "avg_failure_probability": 6.221588570334573e-05
+      },
+      "qos_score": 0.0035193452380952368
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 44,
+        "rounds": 1000,
+        "iterations": 256,
+        "validation_seeds": 20,
+        "final_test_seeds": 100
+      },
+      "candidate": {
+        "name": "deep-wide-h3-d128-r2",
+        "hidden_layer_count": 3,
+        "hidden_dim": 128,
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "0ed15dfb8301ef6f9f5c0186749d2b4f731af39f",
+      "source": "native_ns3_cpp_with_python_mappo_held_out_test",
+      "returncode": 0,
+      "elapsed_seconds": 57.954,
+      "stdout": "final_test_failure_rate=0.00494559 seeds=100\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:975: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -0.27341728828679296,
+        "failure_rate": 0.0049455915178571366,
+        "latency_violation_rate": 0.0030343191964285715,
+        "reliability_violation_rate": 0.0026799665178571432,
+        "avg_e2e_ms": 2.857142857142856,
+        "avg_lw_ms": 1.9685958426339283,
+        "avg_failure_probability": 4.9765312202102944e-05
+      },
+      "qos_score": 0.0035532924107142838
+    }
+  ]
+}

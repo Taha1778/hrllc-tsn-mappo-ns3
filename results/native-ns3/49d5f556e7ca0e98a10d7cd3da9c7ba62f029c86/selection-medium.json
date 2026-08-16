@@ -1,0 +1,627 @@
+{
+  "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+  "metric": "equal_weight_mean(failure_rate, latency_violation_rate, reliability_violation_rate)",
+  "scores": {
+    "reward-1-mask-off": 0.03695436507936508,
+    "reward-1-mask-on": 0.5162109375,
+    "reward-2-mask-off": 0.036108010912698406,
+    "reward-2-mask-on": 0.5250961061507936,
+    "reward-4-mask-off": 0.03624131944444444,
+    "reward-4-mask-on": 0.5233723958333333
+  },
+  "winner": "reward-2-mask-off",
+  "tasks": [
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-1-mask-off",
+        "reliability_penalty_weight": 1.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 21.877,
+      "stdout": "7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0036.csv failure_rate=0.16183 reward_mean=-4.0956\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0037.csv failure_rate=0.178571 reward_mean=-4.63989\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0038.csv failure_rate=0.325893 reward_mean=-132.138\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0039.csv failure_rate=0.237723 reward_mean=-6.31624\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0040.csv failure_rate=0.272321 reward_mean=-6.77172\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0041.csv failure_rate=0.18192 reward_mean=-4.67521\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0042.csv failure_rate=0.237723 reward_mean=-6.64166\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0043.csv failure_rate=0.215402 reward_mean=-5.65878\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0044.csv failure_rate=0.287946 reward_mean=-7.84477\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0045.csv failure_rate=0.166295 reward_mean=-4.36462\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0046.csv failure_rate=0.1875 reward_mean=-5.11233\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0047.csv failure_rate=0.225446 reward_mean=-5.77294\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0048.csv failure_rate=0.22433 reward_mean=-5.72797\nvalidation_round=49 mean_failure_rate=0.0606399 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0049.csv failure_rate=0.152902 reward_mean=-3.98672\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\nfinal_test_failure_rate=0.0571708 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -1.4378003801595,
+        "failure_rate": 0.057170758928571416,
+        "latency_violation_rate": 0.011216517857142855,
+        "reliability_violation_rate": 0.05103236607142856,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.944443359375,
+        "avg_failure_probability": 0.0009779973454251865
+      },
+      "qos_score": 0.03980654761904761
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 43,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-1-mask-off",
+        "reliability_penalty_weight": 1.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 29.143,
+      "stdout": "ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0036.csv failure_rate=0.189732 reward_mean=-4.9391\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0037.csv failure_rate=0.325893 reward_mean=-132.07\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0038.csv failure_rate=0.226562 reward_mean=-6.04747\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0039.csv failure_rate=0.272321 reward_mean=-6.7979\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0040.csv failure_rate=0.162946 reward_mean=-4.14678\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0041.csv failure_rate=0.243304 reward_mean=-6.80467\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0042.csv failure_rate=0.217634 reward_mean=-5.72194\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0043.csv failure_rate=0.291295 reward_mean=-7.83212\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0044.csv failure_rate=0.162946 reward_mean=-4.27082\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0045.csv failure_rate=0.189732 reward_mean=-5.16839\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0046.csv failure_rate=0.223214 reward_mean=-5.68573\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0047.csv failure_rate=0.21875 reward_mean=-5.60839\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0048.csv failure_rate=0.15625 reward_mean=-4.10635\nvalidation_round=49 mean_failure_rate=0.0505952 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0049.csv failure_rate=0.162946 reward_mean=-3.99867\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/summary.csv\nfinal_test_failure_rate=0.0511998 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -1.2346233130452942,
+        "failure_rate": 0.0511997767857143,
+        "latency_violation_rate": 0.010295758928571428,
+        "reliability_violation_rate": 0.04450334821428572,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9486704799107144,
+        "avg_failure_probability": 0.0008950009508994451
+      },
+      "qos_score": 0.03533296130952381
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 44,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-1-mask-off",
+        "reliability_penalty_weight": 1.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 29.14,
+      "stdout": "0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0036.csv failure_rate=0.333705 reward_mean=-134.265\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0037.csv failure_rate=0.239955 reward_mean=-6.38122\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0038.csv failure_rate=0.272321 reward_mean=-6.79419\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0039.csv failure_rate=0.174107 reward_mean=-4.44174\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0040.csv failure_rate=0.243304 reward_mean=-6.80187\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0041.csv failure_rate=0.21875 reward_mean=-5.77611\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0042.csv failure_rate=0.296875 reward_mean=-7.97942\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0043.csv failure_rate=0.159598 reward_mean=-4.27155\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0044.csv failure_rate=0.200893 reward_mean=-5.47678\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0045.csv failure_rate=0.232143 reward_mean=-5.92058\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0046.csv failure_rate=0.22433 reward_mean=-5.75485\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0047.csv failure_rate=0.154018 reward_mean=-4.06828\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0048.csv failure_rate=0.174107 reward_mean=-4.15765\nvalidation_round=49 mean_failure_rate=0.0498512 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0049.csv failure_rate=0.18192 reward_mean=-5.02127\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/summary.csv\nfinal_test_failure_rate=0.0518136 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -1.241175172539959,
+        "failure_rate": 0.05181361607142856,
+        "latency_violation_rate": 0.0099609375,
+        "reliability_violation_rate": 0.04539620535714286,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9497098214285713,
+        "avg_failure_probability": 0.0007951771435969009
+      },
+      "qos_score": 0.035723586309523804
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-1-mask-on",
+        "reliability_penalty_weight": 1.0,
+        "conservative_retry_feasibility_mask": true
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 22.183,
+      "stdout": "ive-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0036.csv failure_rate=0.752232 reward_mean=-19.56\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0037.csv failure_rate=0.787946 reward_mean=-20.8449\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0038.csv failure_rate=0.741071 reward_mean=-82.8244\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0039.csv failure_rate=0.768973 reward_mean=-20.1711\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0040.csv failure_rate=0.802455 reward_mean=-22.0109\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0041.csv failure_rate=0.747768 reward_mean=-19.6813\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0042.csv failure_rate=0.803571 reward_mean=-21.56\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0043.csv failure_rate=0.803571 reward_mean=-21.9471\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0044.csv failure_rate=0.785714 reward_mean=-21.6911\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0045.csv failure_rate=0.71317 reward_mean=-18.2544\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0046.csv failure_rate=0.78125 reward_mean=-21.3827\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0047.csv failure_rate=0.794643 reward_mean=-21.8618\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0048.csv failure_rate=0.783482 reward_mean=-20.5322\nvalidation_round=49 mean_failure_rate=0.772321 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0049.csv failure_rate=0.774554 reward_mean=-20.6664\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\nfinal_test_failure_rate=0.760714 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -20.61039566432594,
+        "failure_rate": 0.7607142857142858,
+        "latency_violation_rate": 0.0004185267857142857,
+        "reliability_violation_rate": 0.7607142857142858,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9821386718749998,
+        "avg_failure_probability": 0.015641750100040507
+      },
+      "qos_score": 0.5072823660714286
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 44,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-1-mask-on",
+        "reliability_penalty_weight": 1.0,
+        "conservative_retry_feasibility_mask": true
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 25.143,
+      "stdout": "ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0036.csv failure_rate=0.738839 reward_mean=-75.8408\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0037.csv failure_rate=0.766741 reward_mean=-20.1229\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0038.csv failure_rate=0.800223 reward_mean=-21.9662\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0039.csv failure_rate=0.747768 reward_mean=-19.6755\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0040.csv failure_rate=0.796875 reward_mean=-21.3637\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0041.csv failure_rate=0.792411 reward_mean=-21.6498\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0042.csv failure_rate=0.783482 reward_mean=-21.6315\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0043.csv failure_rate=0.708705 reward_mean=-18.1866\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0044.csv failure_rate=0.78125 reward_mean=-21.3671\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0045.csv failure_rate=0.792411 reward_mean=-21.8025\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0046.csv failure_rate=0.78125 reward_mean=-20.4154\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0047.csv failure_rate=0.774554 reward_mean=-20.6582\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0048.csv failure_rate=0.783482 reward_mean=-20.9919\nvalidation_round=49 mean_failure_rate=0.764137 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0049.csv failure_rate=0.801339 reward_mean=-21.7347\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/summary.csv\nfinal_test_failure_rate=0.739537 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -20.02028673459423,
+        "failure_rate": 0.7395368303571429,
+        "latency_violation_rate": 0.0004743303571428572,
+        "reliability_violation_rate": 0.7395368303571429,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9823828124999998,
+        "avg_failure_probability": 0.01553450298520763
+      },
+      "qos_score": 0.4931826636904762
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 43,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-1-mask-on",
+        "reliability_penalty_weight": 1.0,
+        "conservative_retry_feasibility_mask": true
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 25.146,
+      "stdout": "ve-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0036.csv failure_rate=0.787946 reward_mean=-20.8323\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0037.csv failure_rate=0.743304 reward_mean=-76.0062\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0038.csv failure_rate=0.773438 reward_mean=-20.2764\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0039.csv failure_rate=0.802455 reward_mean=-22.0439\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0040.csv failure_rate=0.745536 reward_mean=-19.6078\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0041.csv failure_rate=0.796875 reward_mean=-21.375\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0042.csv failure_rate=0.810268 reward_mean=-22.112\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0043.csv failure_rate=0.785714 reward_mean=-21.6913\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0044.csv failure_rate=0.715402 reward_mean=-18.3085\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0045.csv failure_rate=0.783482 reward_mean=-21.44\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0046.csv failure_rate=0.799107 reward_mean=-21.987\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0047.csv failure_rate=0.787946 reward_mean=-20.6954\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0048.csv failure_rate=0.774554 reward_mean=-20.6425\nvalidation_round=49 mean_failure_rate=0.802083 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0049.csv failure_rate=0.783482 reward_mean=-21.0149\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-1-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/summary.csv\nfinal_test_failure_rate=0.822015 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -22.234377080696877,
+        "failure_rate": 0.8220145089285715,
+        "latency_violation_rate": 0.0004743303571428572,
+        "reliability_violation_rate": 0.8220145089285715,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.982808314732143,
+        "avg_failure_probability": 0.01585660317507949
+      },
+      "qos_score": 0.5481677827380953
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-2-mask-off",
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 22.489,
+      "stdout": "a0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0036.csv failure_rate=0.16183 reward_mean=-8.18953\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0037.csv failure_rate=0.184152 reward_mean=-9.56481\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0038.csv failure_rate=0.339286 reward_mean=-138.344\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0039.csv failure_rate=0.237723 reward_mean=-12.5627\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0040.csv failure_rate=0.266741 reward_mean=-12.6768\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0041.csv failure_rate=0.165179 reward_mean=-8.49402\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0042.csv failure_rate=0.243304 reward_mean=-11.969\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0043.csv failure_rate=0.215402 reward_mean=-11.3285\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0044.csv failure_rate=0.293527 reward_mean=-15.8455\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0045.csv failure_rate=0.162946 reward_mean=-8.72123\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0046.csv failure_rate=0.189732 reward_mean=-10.3549\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0047.csv failure_rate=0.225446 reward_mean=-11.4914\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0048.csv failure_rate=0.21875 reward_mean=-11.2129\nvalidation_round=49 mean_failure_rate=0.0561756 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0049.csv failure_rate=0.152902 reward_mean=-7.97362\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\nfinal_test_failure_rate=0.053683 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -2.35926243703097,
+        "failure_rate": 0.0536830357142857,
+        "latency_violation_rate": 0.010379464285714287,
+        "reliability_violation_rate": 0.04712611607142857,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9478125,
+        "avg_failure_probability": 0.0008605504508876589
+      },
+      "qos_score": 0.037062872023809514
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 44,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-2-mask-off",
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 24.913,
+      "stdout": "e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0036.csv failure_rate=0.333705 reward_mean=-137.088\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0037.csv failure_rate=0.245536 reward_mean=-12.9558\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0038.csv failure_rate=0.277902 reward_mean=-13.2298\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0039.csv failure_rate=0.179688 reward_mean=-9.16898\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0040.csv failure_rate=0.243304 reward_mean=-11.9455\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0041.csv failure_rate=0.215402 reward_mean=-11.3638\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0042.csv failure_rate=0.291295 reward_mean=-15.6849\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0043.csv failure_rate=0.162946 reward_mean=-8.72788\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0044.csv failure_rate=0.206473 reward_mean=-11.2642\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0045.csv failure_rate=0.234375 reward_mean=-11.9921\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0046.csv failure_rate=0.21875 reward_mean=-11.1931\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0047.csv failure_rate=0.15625 reward_mean=-8.21083\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0048.csv failure_rate=0.174107 reward_mean=-8.15932\nvalidation_round=49 mean_failure_rate=0.0487351 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0049.csv failure_rate=0.179688 reward_mean=-9.54036\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/summary.csv\nfinal_test_failure_rate=0.0522321 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -2.277191643981154,
+        "failure_rate": 0.05223214285714286,
+        "latency_violation_rate": 0.011690848214285714,
+        "reliability_violation_rate": 0.045619419642857144,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9465429687499998,
+        "avg_failure_probability": 0.0008265498657422186
+      },
+      "qos_score": 0.03651413690476191
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 43,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-2-mask-off",
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 24.92,
+      "stdout": "e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0036.csv failure_rate=0.189732 reward_mean=-9.87661\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0037.csv failure_rate=0.333705 reward_mean=-137.941\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0038.csv failure_rate=0.237723 reward_mean=-12.5582\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0039.csv failure_rate=0.272321 reward_mean=-12.9399\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0040.csv failure_rate=0.162946 reward_mean=-8.29948\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0041.csv failure_rate=0.243304 reward_mean=-12.2316\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0042.csv failure_rate=0.223214 reward_mean=-11.7638\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0043.csv failure_rate=0.291295 reward_mean=-15.6653\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0044.csv failure_rate=0.162946 reward_mean=-8.54475\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0045.csv failure_rate=0.189732 reward_mean=-10.3457\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0046.csv failure_rate=0.234375 reward_mean=-11.9675\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0047.csv failure_rate=0.21875 reward_mean=-11.2168\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0048.csv failure_rate=0.154018 reward_mean=-8.13908\nvalidation_round=49 mean_failure_rate=0.0535714 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0049.csv failure_rate=0.168527 reward_mean=-8.18194\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/summary.csv\nfinal_test_failure_rate=0.050558 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -2.178551581471453,
+        "failure_rate": 0.05055803571428567,
+        "latency_violation_rate": 0.009263392857142857,
+        "reliability_violation_rate": 0.04441964285714285,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.950728236607143,
+        "avg_failure_probability": 0.0007739150174607061
+      },
+      "qos_score": 0.03474702380952379
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-2-mask-on",
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": true
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 22.301,
+      "stdout": "e-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0036.csv failure_rate=0.752232 reward_mean=-39.1149\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0037.csv failure_rate=0.790179 reward_mean=-41.8142\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0038.csv failure_rate=0.741071 reward_mean=-101.446\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0039.csv failure_rate=0.768973 reward_mean=-40.3216\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0040.csv failure_rate=0.802455 reward_mean=-44.022\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0041.csv failure_rate=0.747768 reward_mean=-39.3659\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0042.csv failure_rate=0.803571 reward_mean=-43.124\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0043.csv failure_rate=0.801339 reward_mean=-43.7697\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0044.csv failure_rate=0.787946 reward_mean=-43.5068\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0045.csv failure_rate=0.717634 reward_mean=-36.8011\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0046.csv failure_rate=0.78125 reward_mean=-42.7604\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0047.csv failure_rate=0.790179 reward_mean=-43.468\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0048.csv failure_rate=0.783482 reward_mean=-41.0631\nvalidation_round=49 mean_failure_rate=0.779018 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0049.csv failure_rate=0.774554 reward_mean=-41.3095\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\nfinal_test_failure_rate=0.776339 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -42.05857074256696,
+        "failure_rate": 0.7763392857142858,
+        "latency_violation_rate": 0.0004743303571428572,
+        "reliability_violation_rate": 0.7763392857142858,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9826130022321429,
+        "avg_failure_probability": 0.015881724863298294
+      },
+      "qos_score": 0.5177176339285715
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 44,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-2-mask-on",
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": true
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 24.946,
+      "stdout": "e-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0036.csv failure_rate=0.741071 reward_mean=-94.5278\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0037.csv failure_rate=0.766741 reward_mean=-40.2457\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0038.csv failure_rate=0.800223 reward_mean=-43.9147\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0039.csv failure_rate=0.747768 reward_mean=-39.3683\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0040.csv failure_rate=0.803571 reward_mean=-43.104\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0041.csv failure_rate=0.794643 reward_mean=-43.4253\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0042.csv failure_rate=0.785714 reward_mean=-43.3839\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0043.csv failure_rate=0.708705 reward_mean=-36.4123\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0044.csv failure_rate=0.78125 reward_mean=-42.7363\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0045.csv failure_rate=0.794643 reward_mean=-43.733\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0046.csv failure_rate=0.785714 reward_mean=-41.0637\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0047.csv failure_rate=0.772321 reward_mean=-41.1869\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0048.csv failure_rate=0.783482 reward_mean=-41.9954\nvalidation_round=49 mean_failure_rate=0.77753 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0049.csv failure_rate=0.801339 reward_mean=-43.4517\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/summary.csv\nfinal_test_failure_rate=0.764174 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -41.34679290146571,
+        "failure_rate": 0.7641741071428572,
+        "latency_violation_rate": 0.0004743303571428572,
+        "reliability_violation_rate": 0.7641741071428572,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9825641741071425,
+        "avg_failure_probability": 0.01591280448762767
+      },
+      "qos_score": 0.5096075148809524
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 43,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-2-mask-on",
+        "reliability_penalty_weight": 2.0,
+        "conservative_retry_feasibility_mask": true
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 25.043,
+      "stdout": "ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0036.csv failure_rate=0.787946 reward_mean=-41.6642\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0037.csv failure_rate=0.747768 reward_mean=-95.6979\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0038.csv failure_rate=0.773438 reward_mean=-40.631\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0039.csv failure_rate=0.802455 reward_mean=-44.0697\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0040.csv failure_rate=0.747768 reward_mean=-39.3476\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0041.csv failure_rate=0.799107 reward_mean=-42.8634\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0042.csv failure_rate=0.810268 reward_mean=-44.2863\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0043.csv failure_rate=0.785714 reward_mean=-43.3845\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0044.csv failure_rate=0.71317 reward_mean=-36.5309\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0045.csv failure_rate=0.783482 reward_mean=-42.8679\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0046.csv failure_rate=0.799107 reward_mean=-43.9709\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0047.csv failure_rate=0.790179 reward_mean=-41.4563\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0048.csv failure_rate=0.776786 reward_mean=-41.4302\nvalidation_round=49 mean_failure_rate=0.811384 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0049.csv failure_rate=0.785714 reward_mean=-42.1082\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-2-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/summary.csv\nfinal_test_failure_rate=0.821708 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -44.415812785794074,
+        "failure_rate": 0.8217075892857142,
+        "latency_violation_rate": 0.0004743303571428572,
+        "reliability_violation_rate": 0.8217075892857142,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9830594308035714,
+        "avg_failure_probability": 0.015407930348600404
+      },
+      "qos_score": 0.5479631696428571
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-4-mask-off",
+        "reliability_penalty_weight": 4.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 22.134,
+      "stdout": "e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0036.csv failure_rate=0.159598 reward_mean=-16.1325\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0037.csv failure_rate=0.189732 reward_mean=-19.7521\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0038.csv failure_rate=0.331473 reward_mean=-147.147\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0039.csv failure_rate=0.237723 reward_mean=-25.0519\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0040.csv failure_rate=0.266741 reward_mean=-24.6637\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0041.csv failure_rate=0.165179 reward_mean=-16.9812\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0042.csv failure_rate=0.243304 reward_mean=-22.3015\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0043.csv failure_rate=0.215402 reward_mean=-22.6582\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0044.csv failure_rate=0.293527 reward_mean=-31.692\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0045.csv failure_rate=0.157366 reward_mean=-16.8587\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0046.csv failure_rate=0.195312 reward_mean=-21.3179\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0047.csv failure_rate=0.225446 reward_mean=-23.0641\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0048.csv failure_rate=0.21875 reward_mean=-22.4254\nvalidation_round=49 mean_failure_rate=0.0561756 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0049.csv failure_rate=0.152902 reward_mean=-15.8792\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\nfinal_test_failure_rate=0.0532087 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -4.320428786809698,
+        "failure_rate": 0.05320870535714286,
+        "latency_violation_rate": 0.010658482142857143,
+        "reliability_violation_rate": 0.04623325892857143,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9481612723214288,
+        "avg_failure_probability": 0.0007966200577065423
+      },
+      "qos_score": 0.03670014880952381
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 43,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-4-mask-off",
+        "reliability_penalty_weight": 4.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 24.607,
+      "stdout": "0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0036.csv failure_rate=0.184152 reward_mean=-19.1682\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0037.csv failure_rate=0.328125 reward_mean=-146.896\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0038.csv failure_rate=0.228795 reward_mean=-24.2111\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0039.csv failure_rate=0.272321 reward_mean=-25.1737\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0040.csv failure_rate=0.162946 reward_mean=-16.631\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0041.csv failure_rate=0.237723 reward_mean=-21.7649\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0042.csv failure_rate=0.217634 reward_mean=-22.8873\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0043.csv failure_rate=0.285714 reward_mean=-30.7832\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0044.csv failure_rate=0.162946 reward_mean=-17.0552\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0045.csv failure_rate=0.189732 reward_mean=-20.6951\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0046.csv failure_rate=0.234375 reward_mean=-23.9595\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0047.csv failure_rate=0.21875 reward_mean=-22.4231\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0048.csv failure_rate=0.15067 reward_mean=-15.8014\nvalidation_round=49 mean_failure_rate=0.0498512 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0049.csv failure_rate=0.168527 reward_mean=-16.3109\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/summary.csv\nfinal_test_failure_rate=0.0513951 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -4.202921466372482,
+        "failure_rate": 0.05139508928571428,
+        "latency_violation_rate": 0.008984375,
+        "reliability_violation_rate": 0.04567522321428571,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9511049107142857,
+        "avg_failure_probability": 0.0008522448683332247
+      },
+      "qos_score": 0.035351562499999996
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 44,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-4-mask-off",
+        "reliability_penalty_weight": 4.0,
+        "conservative_retry_feasibility_mask": false
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 24.555,
+      "stdout": "e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0036.csv failure_rate=0.328125 reward_mean=-146.405\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0037.csv failure_rate=0.245536 reward_mean=-25.8601\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0038.csv failure_rate=0.277902 reward_mean=-25.7701\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0039.csv failure_rate=0.179688 reward_mean=-18.3382\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0040.csv failure_rate=0.243304 reward_mean=-22.3032\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0041.csv failure_rate=0.21317 reward_mean=-22.4989\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0042.csv failure_rate=0.291295 reward_mean=-31.3719\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0043.csv failure_rate=0.162946 reward_mean=-17.4631\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0044.csv failure_rate=0.206473 reward_mean=-22.5556\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0045.csv failure_rate=0.234375 reward_mean=-23.9844\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0046.csv failure_rate=0.21875 reward_mean=-22.3513\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0047.csv failure_rate=0.154018 reward_mean=-16.2736\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0048.csv failure_rate=0.174107 reward_mean=-16.1889\nvalidation_round=49 mean_failure_rate=0.0546875 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0049.csv failure_rate=0.185268 reward_mean=-18.3316\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-off__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/summary.csv\nfinal_test_failure_rate=0.0529576 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -4.339384008202015,
+        "failure_rate": 0.05295758928571428,
+        "latency_violation_rate": 0.010518973214285715,
+        "reliability_violation_rate": 0.04654017857142857,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9487123325892857,
+        "avg_failure_probability": 0.0008507138700156765
+      },
+      "qos_score": 0.03667224702380952
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 42,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-4-mask-on",
+        "reliability_penalty_weight": 4.0,
+        "conservative_retry_feasibility_mask": true
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 22.331,
+      "stdout": "-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0036.csv failure_rate=0.752232 reward_mean=-78.2311\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0037.csv failure_rate=0.792411 reward_mean=-83.8763\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0038.csv failure_rate=0.745536 reward_mean=-139.027\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0039.csv failure_rate=0.768973 reward_mean=-80.6389\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0040.csv failure_rate=0.804688 reward_mean=-88.299\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0041.csv failure_rate=0.747768 reward_mean=-78.7025\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0042.csv failure_rate=0.805804 reward_mean=-86.4959\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0043.csv failure_rate=0.801339 reward_mean=-87.576\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0044.csv failure_rate=0.787946 reward_mean=-87.0133\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0045.csv failure_rate=0.717634 reward_mean=-73.5061\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0046.csv failure_rate=0.78125 reward_mean=-85.5274\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0047.csv failure_rate=0.792411 reward_mean=-87.1915\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0048.csv failure_rate=0.785714 reward_mean=-82.3762\nvalidation_round=49 mean_failure_rate=0.772321 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/round_0049.csv failure_rate=0.776786 reward_mean=-82.8812\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-42/runs/summary.csv\nfinal_test_failure_rate=0.759152 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -82.12751588671718,
+        "failure_rate": 0.7591517857142857,
+        "latency_violation_rate": 0.0004743303571428572,
+        "reliability_violation_rate": 0.7591517857142857,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9821805245535713,
+        "avg_failure_probability": 0.015526659805171747
+      },
+      "qos_score": 0.506259300595238
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 44,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-4-mask-on",
+        "reliability_penalty_weight": 4.0,
+        "conservative_retry_feasibility_mask": true
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 24.746,
+      "stdout": "-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0036.csv failure_rate=0.741071 reward_mean=-132.531\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0037.csv failure_rate=0.766741 reward_mean=-80.4915\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0038.csv failure_rate=0.802455 reward_mean=-88.058\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0039.csv failure_rate=0.745536 reward_mean=-78.453\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0040.csv failure_rate=0.803571 reward_mean=-86.2055\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0041.csv failure_rate=0.796875 reward_mean=-87.0959\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0042.csv failure_rate=0.785714 reward_mean=-86.7569\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0043.csv failure_rate=0.708705 reward_mean=-72.7542\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0044.csv failure_rate=0.779018 reward_mean=-85.3874\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0045.csv failure_rate=0.790179 reward_mean=-86.9645\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0046.csv failure_rate=0.787946 reward_mean=-82.4193\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0047.csv failure_rate=0.772321 reward_mean=-82.2783\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0048.csv failure_rate=0.78125 reward_mean=-83.7278\nvalidation_round=49 mean_failure_rate=0.792039 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/round_0049.csv failure_rate=0.803571 reward_mean=-87.1528\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-44/runs/summary.csv\nfinal_test_failure_rate=0.791853 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -85.76371566368454,
+        "failure_rate": 0.7918526785714286,
+        "latency_violation_rate": 0.0004743303571428572,
+        "reliability_violation_rate": 0.7918526785714286,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9834500558035715,
+        "avg_failure_probability": 0.01631601231890472
+      },
+      "qos_score": 0.5280598958333333
+    },
+    {
+      "task": {
+        "phase": "selection",
+        "variant": "MAPPO-H",
+        "axis": "k",
+        "value": 8,
+        "seed": 43,
+        "rounds": 50,
+        "iterations": 32,
+        "validation_seeds": 3,
+        "final_test_seeds": 5
+      },
+      "candidate": {
+        "name": "reward-4-mask-on",
+        "reliability_penalty_weight": 4.0,
+        "conservative_retry_feasibility_mask": true
+      },
+      "git_commit": "49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86",
+      "source": "native_ns3_cpp_with_python_mappo",
+      "returncode": 0,
+      "elapsed_seconds": 24.789,
+      "stdout": "ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0036.csv failure_rate=0.787946 reward_mean=-83.3262\nround=37 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0037.csv failure_rate=0.745536 reward_mean=-133.073\nround=38 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0038.csv failure_rate=0.771205 reward_mean=-81.0035\nround=39 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0039.csv failure_rate=0.802455 reward_mean=-88.1206\nround=40 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0040.csv failure_rate=0.747768 reward_mean=-78.6946\nround=41 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0041.csv failure_rate=0.799107 reward_mean=-85.7333\nround=42 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0042.csv failure_rate=0.808036 reward_mean=-88.3227\nround=43 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0043.csv failure_rate=0.785714 reward_mean=-86.7675\nround=44 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0044.csv failure_rate=0.710938 reward_mean=-72.8449\nround=45 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0045.csv failure_rate=0.783482 reward_mean=-85.745\nround=46 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0046.csv failure_rate=0.796875 reward_mean=-87.6884\nround=47 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0047.csv failure_rate=0.785714 reward_mean=-82.5326\nround=48 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0048.csv failure_rate=0.776786 reward_mean=-82.7861\nvalidation_round=49 mean_failure_rate=0.795759 seeds=3\nround=49 csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/round_0049.csv failure_rate=0.785714 reward_mean=-84.2394\nsummary_csv=/cluster-results/native-ns3/49d5f556e7ca0e98a10d7cd3da9c7ba62f029c86-medium-20260811-154219/native-ns3/candidate-reward-4-mask-on__phase-selection__variant-MAPPO-H__axis-k__value-8__seed-43/runs/summary.csv\nfinal_test_failure_rate=0.80346 seeds=5\n",
+      "stderr": "/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n/workspace/python/hrllc_tsn_trainer.py:950: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)\n  q_actions = torch.as_tensor(item[\"q_actions\"], dtype=torch.long)\n",
+      "metrics": {
+        "reward_mean": -87.04268774211218,
+        "failure_rate": 0.8034598214285713,
+        "latency_violation_rate": 0.0004743303571428572,
+        "reliability_violation_rate": 0.8034598214285715,
+        "avg_e2e_ms": 2.857142857142857,
+        "avg_lw_ms": 1.9833803013392857,
+        "avg_failure_probability": 0.01428706077519803
+      },
+      "qos_score": 0.5357979910714286
+    }
+  ]
+}

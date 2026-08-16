@@ -1,0 +1,12 @@
+# Sent with a Ray Job so the driver and worker tasks use this committed code,
+# without uploading local builds, generated checkpoints, or OneDrive outputs.
+working_dir: .
+excludes:
+  - .git/
+  - external/
+  - runs/
+  - weights/
+  - tmp/
+  - tmp_excel_build/
+  - .venv-linux/
+  - __pycache__/

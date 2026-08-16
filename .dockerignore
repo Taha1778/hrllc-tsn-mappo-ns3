@@ -1,0 +1,8 @@
+.git
+external
+runs
+weights
+tmp
+tmp_excel_build
+__pycache__
+*.pyc

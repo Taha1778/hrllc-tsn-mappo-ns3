@@ -1,0 +1,47 @@
+name: Full Figure 8 cluster run
+
+on:
+  workflow_dispatch:
+    inputs:
+      episodes:
+        description: "MAPPO training episodes per Figure 8 point"
+        required: true
+        default: "1000"
+      scenarios:
+        description: "Evaluation scenarios per Figure 8 point"
+        required: true
+        default: "100"
+      methods:
+        description: "Comma-separated methods, or leave as the full matrix"
+        required: true
+        default: "MAPPO-H,MAPPO-M,CPPO,DQN,MADDPG,BCD,Random"
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    # This label must be assigned only to the approved controller runner.
+    # It is deliberately manual: a full request schedules up to 42 jobs.
+    runs-on: [self-hosted, cluster-controller]
+    environment: research-cluster
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the submission-client dependencies
+        run: python3 -m pip install -r requirements.txt -r requirements-cluster.txt
+      - name: Submit the private Ray job matrix
+        env:
+          # Configure this as an internal repository variable, for example
+          # http://ray-head.research-vlan.internal:8265. Never use a public URL.
+          RAY_DASHBOARD_ADDRESS: ${{ vars.RAY_DASHBOARD_ADDRESS }}
+          RESULTS_ROOT: /cluster-results/figure8/${{ github.sha }}-${{ github.run_id }}
+        run: |
+          test -n "$RAY_DASHBOARD_ADDRESS"
+          ray job submit --address "$RAY_DASHBOARD_ADDRESS" --runtime-env cluster/ray_runtime_env.yaml -- \
+            python cluster/submit_figure8_ray.py \
+              --address auto \
+              --results-root "$RESULTS_ROOT" \
+              --episodes "${{ inputs.episodes }}" \
+              --scenarios "${{ inputs.scenarios }}" \
+              --methods "${{ inputs.methods }}"
+          python3 cluster/aggregate_figure8.py --results-root "$RESULTS_ROOT"

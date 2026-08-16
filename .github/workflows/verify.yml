@@ -1,0 +1,27 @@
+name: Verify source changes
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  regression-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Check Python syntax
+        run: python -m py_compile python/hrllc_tsn_trainer.py cluster/*.py
+      - name: Run paper-reference baseline regression
+        run: python -m unittest tests/test_paper_reference_baselines.py -v
+      - name: Run an isolated Figure 8 smoke point
+        run: python cluster/run_figure8_job.py --method CPPO --k 2 --scenarios 2 --output-dir /tmp/hrllc-figure8-smoke
+      - name: Build the native Linux cluster image
+        run: docker build --tag hrllc-tsn-cluster:ci .

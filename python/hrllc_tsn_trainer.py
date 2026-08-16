@@ -19,11 +19,14 @@ import torch.nn.functional as F
 from torch.distributions import Categorical
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = PROJECT_ROOT / "configs" / "default_config.json"
+SOURCE_ROOT = Path(__file__).resolve().parents[1]
+# A Ray task must never share mutable results or weights with another task.
+# The source and ns-3 build stay in SOURCE_ROOT; only mutable artifacts move.
+PROJECT_ROOT = Path(os.environ.get("HRLLC_TSN_WORKSPACE", SOURCE_ROOT)).resolve()
+CONFIG_PATH = Path(os.environ.get("HRLLC_TSN_CONFIG", SOURCE_ROOT / "configs" / "default_config.json")).resolve()
 WEIGHTS_DIR = PROJECT_ROOT / "weights"
 RUNS_DIR = PROJECT_ROOT / "runs"
-EXTERNAL_DIR = PROJECT_ROOT / "external"
+EXTERNAL_DIR = SOURCE_ROOT / "external"
 NS3_DIR = EXTERNAL_DIR / "ns-3.44"
 CURRENT_NPZ = WEIGHTS_DIR / "current_model.npz"
 CURRENT_WEIGHTS = WEIGHTS_DIR / "current_model.weights"
@@ -33,8 +36,9 @@ FINAL_TEST_SUMMARY_CSV = RUNS_DIR / "final_test_summary.csv"
 WORKFLOW_STATUS_JSON = RUNS_DIR / "workflow_status.json"
 
 
-# Windows-side workflow utilities: status reporting, WSL path conversion, and
-# checked subprocess execution. C++ simulation runs in WSL; training remains here.
+# Workflow utilities. On Windows the C++ simulator is executed through WSL;
+# on Linux the exact same binary is invoked directly. This keeps the existing
+# Windows workflow working while allowing an isolated Linux worker to run a job.
 def write_workflow_status(status, **details):
     """Persist a concise, machine-readable state without audible alerts."""
     RUNS_DIR.mkdir(parents=True, exist_ok=True)
@@ -102,19 +106,22 @@ def verify_paper_configuration(config):
 class ActorNetwork(nn.Module):
     """Decentralized policy with categorical power and HARQ action heads."""
 
-    def __init__(self, obs_dim, hidden_dim, q_max, n_action_dim):
+    def __init__(self, obs_dim, hidden_dim, q_max, n_action_dim, hidden_layer_count=2):
         super().__init__()
-        self.fc1 = nn.Linear(obs_dim, hidden_dim)
-        self.fc2 = nn.Linear(hidden_dim, hidden_dim)
+        self.hidden_layers = nn.ModuleList(
+            [nn.Linear(obs_dim if index == 0 else hidden_dim, hidden_dim)
+             for index in range(hidden_layer_count)]
+        )
         self.power_head = nn.Linear(hidden_dim, q_max)
         self.retransmission_head = nn.Linear(hidden_dim, n_action_dim)
-        for layer in (self.fc1, self.fc2, self.power_head, self.retransmission_head):
+        for layer in (*self.hidden_layers, self.power_head, self.retransmission_head):
             nn.init.orthogonal_(layer.weight, gain=math.sqrt(2.0))
             nn.init.constant_(layer.bias, 0.0)
 
     def forward(self, obs, valid_n_count):
-        hidden = F.relu(self.fc1(obs))
-        hidden = F.relu(self.fc2(hidden))
+        hidden = obs
+        for layer in self.hidden_layers:
+            hidden = F.relu(layer(hidden))
         power_logits = self.power_head(hidden)
         retransmission_logits = self.retransmission_head(hidden)
         if valid_n_count < retransmission_logits.shape[-1]:
@@ -126,18 +133,21 @@ class ActorNetwork(nn.Module):
 class CriticNetwork(nn.Module):
     """Centralized value network used only during training."""
 
-    def __init__(self, state_dim, hidden_dim):
+    def __init__(self, state_dim, hidden_dim, hidden_layer_count=2):
         super().__init__()
-        self.fc1 = nn.Linear(state_dim, hidden_dim)
-        self.fc2 = nn.Linear(hidden_dim, hidden_dim)
+        self.hidden_layers = nn.ModuleList(
+            [nn.Linear(state_dim if index == 0 else hidden_dim, hidden_dim)
+             for index in range(hidden_layer_count)]
+        )
         self.value_head = nn.Linear(hidden_dim, 1)
-        for layer in (self.fc1, self.fc2, self.value_head):
+        for layer in (*self.hidden_layers, self.value_head):
             nn.init.orthogonal_(layer.weight, gain=math.sqrt(2.0))
             nn.init.constant_(layer.bias, 0.0)
 
     def forward(self, state):
-        hidden = F.relu(self.fc1(state))
-        hidden = F.relu(self.fc2(hidden))
+        hidden = state
+        for layer in self.hidden_layers:
+            hidden = F.relu(layer(hidden))
         return self.value_head(hidden).squeeze(-1)
 
 
@@ -173,6 +183,7 @@ def create_model(config):
     obs_dim = k + 2
     state_dim = 3 * k
     hidden_dim = int(config["hidden_dim"])
+    hidden_layer_count = int(config["hidden_layer_count"])
     q_max = int(config["q_max"])
     actor_n_action_dims = []
     for agent in range(k):
@@ -182,14 +193,16 @@ def create_model(config):
         actor_n_action_dims.append(int(math.floor(latency_ms / config["retransmission_ms"])) + 1)
     n_action_dim = max(actor_n_action_dims)
     actors = [
-        ActorNetwork(obs_dim, hidden_dim, q_max, actor_n_action_dims[agent]) for agent in range(k)
+        ActorNetwork(obs_dim, hidden_dim, q_max, actor_n_action_dims[agent], hidden_layer_count)
+        for agent in range(k)
     ]
-    critic = CriticNetwork(state_dim, hidden_dim)
+    critic = CriticNetwork(state_dim, hidden_dim, hidden_layer_count)
     model = {
         "k": k,
         "obs_dim": obs_dim,
         "state_dim": state_dim,
         "hidden_dim": hidden_dim,
+        "hidden_layer_count": hidden_layer_count,
         "q_max": q_max,
         "n_action_dim": n_action_dim,
         "actor_n_action_dims": actor_n_action_dims,
@@ -216,8 +229,8 @@ def save_model_npz(model, path):
     try:
         torch.save(
             {
-                "format": "torch_mappo_v2",
-                "meta": [model[key] for key in ("k", "obs_dim", "state_dim", "hidden_dim", "q_max", "n_action_dim")],
+                "format": "torch_mappo_v3",
+                "meta": [model[key] for key in ("k", "obs_dim", "state_dim", "hidden_dim", "hidden_layer_count", "q_max", "n_action_dim")],
                 "actor_n_action_dims": model["actor_n_action_dims"],
                 "actors": [actor.state_dict() for actor in model["actors"]],
                 "critic": model["critic"].state_dict(),
@@ -234,22 +247,23 @@ def save_model_npz(model, path):
 
 def load_model_npz(path):
     data = torch.load(path, map_location="cpu", weights_only=True)
-    if data.get("format") != "torch_mappo_v2":
-        raise ValueError("Checkpoint predates actor-specific retransmission heads; start a fresh campaign.")
+    if data.get("format") != "torch_mappo_v3":
+        raise ValueError("Checkpoint predates configurable hidden-layer support; start a fresh campaign.")
     meta = data["meta"]
     model = {
         "k": meta[0],
         "obs_dim": meta[1],
         "state_dim": meta[2],
         "hidden_dim": meta[3],
-        "q_max": meta[4],
-        "n_action_dim": meta[5],
+        "hidden_layer_count": meta[4],
+        "q_max": meta[5],
+        "n_action_dim": meta[6],
         "actor_n_action_dims": list(data["actor_n_action_dims"]),
         "actors": [
-            ActorNetwork(meta[1], meta[3], meta[4], n_action_dim)
+            ActorNetwork(meta[1], meta[3], meta[5], n_action_dim, meta[4])
             for n_action_dim in data["actor_n_action_dims"]
         ],
-        "critic": CriticNetwork(meta[2], meta[3]),
+        "critic": CriticNetwork(meta[2], meta[3], meta[4]),
     }
     for actor, state_dict in zip(model["actors"], data["actors"]):
         actor.load_state_dict(state_dict)
@@ -280,19 +294,19 @@ def write_cpp_weights(model, path):
     temporary_path = temporary_artifact_path(path)
     try:
         with temporary_path.open("w", encoding="utf-8", newline="\n") as f:
-            f.write("HRLLC_TSN_MAPPO_WEIGHTS_V1\n")
+            f.write("HRLLC_TSN_MAPPO_WEIGHTS_V2\n")
             f.write(f"K {model['k']}\n")
             f.write(f"OBS_DIM {model['obs_dim']}\n")
             f.write(f"STATE_DIM {model['state_dim']}\n")
             f.write(f"HIDDEN_DIM {model['hidden_dim']}\n")
+            f.write(f"HIDDEN_LAYER_COUNT {model['hidden_layer_count']}\n")
             f.write(f"Q_MAX {model['q_max']}\n")
             f.write(f"N_ACTION_DIM {model['n_action_dim']}\n")
             for i, actor in enumerate(model["actors"]):
                 f.write(f"ACTOR {i}\n")
-                write_matrix(f, "W1", actor.fc1.weight.detach().cpu().numpy())
-                write_vector(f, "B1", actor.fc1.bias.detach().cpu().numpy())
-                write_matrix(f, "W2", actor.fc2.weight.detach().cpu().numpy())
-                write_vector(f, "B2", actor.fc2.bias.detach().cpu().numpy())
+                for layer_index, layer in enumerate(actor.hidden_layers, start=1):
+                    write_matrix(f, f"W{layer_index}", layer.weight.detach().cpu().numpy())
+                    write_vector(f, f"B{layer_index}", layer.bias.detach().cpu().numpy())
                 write_matrix(f, "WQ", actor.power_head.weight.detach().cpu().numpy())
                 write_vector(f, "BQ", actor.power_head.bias.detach().cpu().numpy())
                 write_matrix(f, "WN", actor.retransmission_head.weight.detach().cpu().numpy())
@@ -317,8 +331,14 @@ def ensure_model(config, reset=False):
             model = create_model(config)
             save_model_npz(model, CURRENT_NPZ)
             recreated = True
-        expected = (int(config["k"]), int(config["k"]) + 2, 3 * int(config["k"]))
-        actual = (model["k"], model["obs_dim"], model["state_dim"])
+        expected = (
+            int(config["k"]), int(config["k"]) + 2, 3 * int(config["k"]),
+            int(config["hidden_layer_count"]), int(config["hidden_dim"]), int(config["q_max"]),
+        )
+        actual = (
+            model["k"], model["obs_dim"], model["state_dim"],
+            model["hidden_layer_count"], model["hidden_dim"], model["q_max"],
+        )
         if actual != expected:
             model = create_model(config)
             save_model_npz(model, CURRENT_NPZ)
@@ -680,7 +700,7 @@ def update_model_from_csv(model, csv_path, config):
                     n_actions,
                     torch.as_tensor(item["q_logp"], dtype=torch.float32),
                     torch.as_tensor(item["n_logp"], dtype=torch.float32),
-                    model["actor_n_action_dims"][agent],
+                    valid_retransmission_count(agent, config, model["actor_n_action_dims"][agent]),
                 )
             )
 
@@ -701,7 +721,10 @@ def update_model_from_csv(model, csv_path, config):
 
         critic_optimizer = model["critic_optimizer"]
         critic_optimizer.zero_grad()
-        critic_loss = F.huber_loss(model["critic"](states), returns, delta=float(config["huber_delta"]))
+        if config.get("critic_loss", "huber") == "mse":
+            critic_loss = F.mse_loss(model["critic"](states), returns)
+        else:
+            critic_loss = F.huber_loss(model["critic"](states), returns, delta=float(config["huber_delta"]))
         critic_loss.backward()
         torch.nn.utils.clip_grad_norm_(model["critic"].parameters(), max_grad_norm)
         critic_optimizer.step()
@@ -745,17 +768,26 @@ def append_summary(round_index, csv_path, metrics):
 
 def save_best_if_needed(model, metrics):
     best_meta = WEIGHTS_DIR / "best_metrics.json"
-    current = float(metrics["failure_rate"])
+    current = sum(float(metrics[key]) for key in (
+        "failure_rate", "latency_violation_rate", "reliability_violation_rate"
+    )) / 3.0
     previous = None
     if best_meta.exists():
         try:
-            previous = json.loads(best_meta.read_text(encoding="utf-8")).get("failure_rate")
+            previous_metrics = json.loads(best_meta.read_text(encoding="utf-8"))
+            previous = previous_metrics.get("selection_qos_score")
+            if previous is None:
+                previous = sum(float(previous_metrics[key]) for key in (
+                    "failure_rate", "latency_violation_rate", "reliability_violation_rate"
+                )) / 3.0
         except Exception:
             previous = None
     if previous is None or current < float(previous):
         save_model_npz(model, WEIGHTS_DIR / "best_model.npz")
         write_cpp_weights(model, WEIGHTS_DIR / "best_model.weights")
-        best_meta.write_text(json.dumps(metrics, indent=2), encoding="utf-8")
+        best_meta.write_text(
+            json.dumps({**metrics, "selection_qos_score": current}, indent=2), encoding="utf-8"
+        )
 
 
 def mean_metrics(metrics_list):
@@ -884,27 +916,32 @@ def available_csv_path(round_index, prefix="round", seed=None):
     return RUNS_DIR / f"{name}_{stamp}_{os.getpid()}.csv"
 
 
-# WSL/ns-3 bridge: synchronize changed C++ source, build it if necessary, and
-# pass weights plus every simulation parameter to one C++ trajectory execution.
+# ns-3 bridge: synchronize changed C++ source, build it if necessary, and pass
+# weights plus every simulation parameter to one C++ trajectory execution.
 def ensure_ns3_ready():
     ns3_runner = NS3_DIR / "ns3"
     scratch_file = NS3_DIR / "scratch" / "hrllc_tsn_mappo.cc"
     if not ns3_runner.exists() or not scratch_file.exists():
-        raise RuntimeError(
-            "ns-3 is not ready. Run scripts/setup_ns3_wsl.ps1 first from PowerShell."
-        )
-    project_source = PROJECT_ROOT / "ns3" / "scratch" / "hrllc_tsn_mappo.cc"
+        setup_script = "scripts/setup_ns3_wsl.ps1" if os.name == "nt" else "scripts/setup_ns3_linux.sh"
+        raise RuntimeError(f"ns-3 is not ready. Run {setup_script} first.")
+    # PROJECT_ROOT may be a per-Ray-task output workspace.  Keep source files
+    # anchored to the checked-out project so isolated tasks do not look for
+    # ns-3 under their results directory.
+    project_source = SOURCE_ROOT / "ns3" / "scratch" / "hrllc_tsn_mappo.cc"
     if not filecmp.cmp(project_source, scratch_file, shallow=False):
         shutil.copy2(project_source, scratch_file)
-        cmake_candidates = sorted(EXTERNAL_DIR.glob("cmake-*-linux-x86_64/bin"))
-        if cmake_candidates:
-            cmake_bin_wsl = to_wsl_path(cmake_candidates[-1])
-            path_prefix = f"export PATH={shlex.quote(cmake_bin_wsl + ':/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin')}; "
+        if os.name == "nt":
+            cmake_candidates = sorted(EXTERNAL_DIR.glob("cmake-*-linux-x86_64/bin"))
+            if cmake_candidates:
+                cmake_bin_wsl = to_wsl_path(cmake_candidates[-1])
+                path_prefix = f"export PATH={shlex.quote(cmake_bin_wsl + ':/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin')}; "
+            else:
+                path_prefix = ""
+            ns3_dir_wsl = to_wsl_path(NS3_DIR)
+            command = f"{path_prefix}cd {shlex.quote(ns3_dir_wsl)} && ./ns3 build hrllc_tsn_mappo"
+            run_checked(["wsl", "bash", "-lc", command])
         else:
-            path_prefix = ""
-        ns3_dir_wsl = to_wsl_path(NS3_DIR)
-        command = f"{path_prefix}cd {shlex.quote(ns3_dir_wsl)} && ./ns3 build hrllc_tsn_mappo"
-        run_checked(["wsl", "bash", "-lc", command])
+            run_checked([str(ns3_runner), "build", "hrllc_tsn_mappo"], cwd=NS3_DIR)
 
 
 def next_round_start():
@@ -938,7 +975,8 @@ def verify_cpp_action_log_probabilities(model, csv_path, config):
         q_actions = torch.as_tensor(item["q_actions"], dtype=torch.long)
         n_actions = torch.as_tensor(item["n_actions"], dtype=torch.long)
         with torch.no_grad():
-            q_logits, n_logits = model["actors"][agent](obs, model["actor_n_action_dims"][agent])
+            valid_n = valid_retransmission_count(agent, config, model["actor_n_action_dims"][agent])
+            q_logits, n_logits = model["actors"][agent](obs, valid_n)
             q_logp = Categorical(logits=q_logits).log_prob(q_actions).cpu().numpy()
             n_logp = Categorical(logits=n_logits).log_prob(n_actions).cpu().numpy()
         if not np.allclose(q_logp, item["q_logp"], rtol=2e-5, atol=2e-5):
@@ -955,20 +993,19 @@ def run_ns3_round(round_index, model, config, args, *, seed=None, deterministic=
     csv_path = available_csv_path(round_index, prefix=prefix, seed=seed if prefix != "round" else None)
     reference_gains = python_reference_gain_csv(seed, model["k"], model["n_action_dim"])
 
-    project_wsl_real = to_wsl_path(PROJECT_ROOT)
-    project_wsl = f"/tmp/hrllc_tsn_mappo_project_{os.getpid()}"
-    ns3_dir_wsl = f"{project_wsl}/external/ns-3.44"
-    weights_wsl = f"{project_wsl}/weights/current_model.weights"
-    csv_wsl = f"{project_wsl}/runs/{csv_path.name}"
-    cmake_candidates = sorted(EXTERNAL_DIR.glob("cmake-*-linux-x86_64/bin"))
-    if cmake_candidates:
-        cmake_bin_wsl = to_wsl_path(cmake_candidates[-1])
-        path_prefix = f"export PATH={shlex.quote(cmake_bin_wsl + ':/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin')}; "
+    if os.name == "nt":
+        project_wsl_real = to_wsl_path(SOURCE_ROOT)
+        project_wsl = f"/tmp/hrllc_tsn_mappo_project_{os.getpid()}"
+        ns3_dir = f"{project_wsl}/external/ns-3.44"
+        weights_path = f"{project_wsl}/weights/current_model.weights"
+        csv_output_path = f"{project_wsl}/runs/{csv_path.name}"
     else:
-        path_prefix = ""
+        ns3_dir = str(NS3_DIR)
+        weights_path = str(CURRENT_WEIGHTS)
+        csv_output_path = str(csv_path)
     program_args = (
-        f"--weights={shlex.quote(weights_wsl)} "
-        f"--csv={shlex.quote(csv_wsl)} "
+        f"--weights={shlex.quote(weights_path)} "
+        f"--csv={shlex.quote(csv_output_path)} "
         f"--iterations={args.iterations} "
         f"--K={args.k} "
         f"--seed={seed} "
@@ -1010,19 +1047,33 @@ def run_ns3_round(round_index, model, config, args, *, seed=None, deterministic=
         f"--probabilityFloor={config['probability_floor']} "
         f"--denominatorFloor={config['denominator_floor']} "
         f"--reliabilityPenaltyWeight={config['reliability_penalty_weight']} "
-        f"--shadowFadingPerStep={str(config['shadow_fading_mode'] == 'iid_per_step').lower()} "
-        f"--conservativeRetryFeasibility={str(config.get('conservative_retry_feasibility_mask', False)).lower()} "
+        f"--shadowFadingPerStep={int(config['shadow_fading_mode'] == 'iid_per_step')} "
+        f"--conservativeRetryFeasibility={int(config.get('conservative_retry_feasibility_mask', False))} "
+        f"--randomGcl={int(config.get('random_gcl', False))} "
+        f"--simpleReward={int(config.get('simple_reward', False))} "
         f"--referenceGains={reference_gains} "
         f"--deterministic={str(deterministic).lower()} "
         f"--runIndex={round_index}"
     )
-    command = (
-        f"{path_prefix}"
-        f"ln -sfnT {shlex.quote(project_wsl_real)} {shlex.quote(project_wsl)} && "
-        f"{shlex.quote(ns3_dir_wsl + '/build/scratch/ns3.44-hrllc_tsn_mappo-default')} "
-        f"{program_args}"
-    )
-    run_checked(["wsl", "bash", "-lc", command])
+    if os.name == "nt":
+        executable_wsl = ns3_dir + "/build/scratch/ns3.44-hrllc_tsn_mappo-default"
+        cmake_candidates = sorted(EXTERNAL_DIR.glob("cmake-*-linux-x86_64/bin"))
+        if cmake_candidates:
+            cmake_bin_wsl = to_wsl_path(cmake_candidates[-1])
+            path_prefix = f"export PATH={shlex.quote(cmake_bin_wsl + ':/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin')}; "
+        else:
+            path_prefix = ""
+        command = (
+            f"{path_prefix}"
+            f"ln -sfnT {shlex.quote(project_wsl_real)} {shlex.quote(project_wsl)} && "
+            f"{shlex.quote(executable_wsl)} {program_args}"
+        )
+        run_checked(["wsl", "bash", "-lc", command])
+    else:
+        executable = Path(ns3_dir) / "build" / "scratch" / "ns3.44-hrllc_tsn_mappo-default"
+        if not executable.exists():
+            raise RuntimeError(f"ns-3 executable is missing: {executable}")
+        run_checked([str(executable), *shlex.split(program_args)], cwd=SOURCE_ROOT)
     verify_cpp_action_log_probabilities(model, csv_path, config)
     return csv_path
 
@@ -1072,6 +1123,8 @@ def main():
     parser.add_argument("--radius", type=float, default=None)
     parser.add_argument("--power", type=float, default=None)
     parser.add_argument("--gamma-db", type=float, default=None)
+    parser.add_argument("--config", type=Path, default=None, help="Extension configuration JSON; defaults to HRLLC_TSN_CONFIG/default config.")
+    parser.add_argument("--workspace", type=Path, default=None, help="Isolated mutable runs/ and weights/ directory.")
     parser.add_argument("--reset-model", action="store_true")
     parser.add_argument(
         "--fresh-start",
@@ -1123,9 +1176,24 @@ def main():
     )
     args = parser.parse_args()
 
+    global PROJECT_ROOT, CONFIG_PATH, WEIGHTS_DIR, RUNS_DIR, CURRENT_NPZ, CURRENT_WEIGHTS
+    global SUMMARY_CSV, VALIDATION_SUMMARY_CSV, FINAL_TEST_SUMMARY_CSV, WORKFLOW_STATUS_JSON
+    if args.workspace:
+        PROJECT_ROOT = args.workspace.resolve()
+        WEIGHTS_DIR = PROJECT_ROOT / "weights"
+        RUNS_DIR = PROJECT_ROOT / "runs"
+        CURRENT_NPZ = WEIGHTS_DIR / "current_model.npz"
+        CURRENT_WEIGHTS = WEIGHTS_DIR / "current_model.weights"
+        SUMMARY_CSV = RUNS_DIR / "summary.csv"
+        VALIDATION_SUMMARY_CSV = RUNS_DIR / "validation_summary.csv"
+        FINAL_TEST_SUMMARY_CSV = RUNS_DIR / "final_test_summary.csv"
+        WORKFLOW_STATUS_JSON = RUNS_DIR / "workflow_status.json"
+    if args.config:
+        CONFIG_PATH = args.config.resolve()
+
     config = load_config()
-    if int(config["hidden_layer_count"]) != 2:
-        raise ValueError("This weight-file format implements exactly two hidden layers.")
+    if int(config["hidden_layer_count"]) not in {2, 3}:
+        raise ValueError("hidden_layer_count must be 2 or 3 for the native ns-3 weight format.")
     if len(config["initial_action_power_bias"]) < int(config["q_max"]):
         raise ValueError("initial_action_power_bias must contain at least q_max values.")
     if config.get("shadow_fading_mode") not in {"iid_per_step", "static_per_scenario"}:
@@ -1136,6 +1204,8 @@ def main():
         raise ValueError("initialization_method must be 'orthogonal', 'normal_fixed', or 'xavier_uniform'.")
     if config.get("initial_action_prior") not in {"balanced_safe", "none"}:
         raise ValueError("initial_action_prior must be 'balanced_safe' or 'none'.")
+    if config.get("critic_loss", "huber") not in {"huber", "mse"}:
+        raise ValueError("critic_loss must be 'huber' or 'mse'.")
     if args.iterations is None:
         args.iterations = int(config["iterations"])
     if args.k is None:
